@@ -5,6 +5,7 @@
 import Project.ConnectionProvider;
 import java.sql.*;
 import java.time.LocalDate;
+import javax.swing.ComboBoxEditor;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -951,7 +952,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
                   jTextField7.setText(rs.getString(3));
                   jTextField8.setText(rs.getString(9));
                   jTextField10.setText(rs.getString(10));
-////                  jComboBox1.setText(rs.getString(7));
+                  jComboBox1.setSelectedItem(rs.getString(8));                    
                   jTextField9.setText(rs.getString(11));
                   jTextField4.setText(rs.getString(4));
                   jTextField11.setText(rs.getString(5));
@@ -980,7 +981,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
                   jTextField21.setText(rs1.getString(5));
                   jTextField18.setText(rs1.getString(6));
                   jTextField15.setText(rs1.getString(7));
-//                  jComboBox2.setText(rs.getString(7));
+                  jComboBox2.setSelectedItem(rs1.getString(8));
                 }
                 }
                 //To fetch Doctor Details
