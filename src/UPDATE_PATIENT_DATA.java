@@ -6,6 +6,7 @@ import Project.ConnectionProvider;
 import java.sql.*;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author dwive
@@ -31,7 +32,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup4 = new javax.swing.ButtonGroup();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -85,19 +86,29 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jButton8 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
+        jButton9 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
+        jTextField14 = new javax.swing.JTextField();
         jTextField16 = new javax.swing.JTextField();
         jTextField17 = new javax.swing.JTextField();
         jTextField19 = new javax.swing.JTextField();
         jTextField22 = new javax.swing.JTextField();
-        jLabel31 = new javax.swing.JLabel();
         jTextField23 = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jLabel31 = new javax.swing.JLabel();
         jTextField24 = new javax.swing.JTextField();
-        jButton9 = new javax.swing.JButton();
+        jLabel46 = new javax.swing.JLabel();
+        jTextField39 = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jButton7 = new javax.swing.JButton();
         jLabel29 = new javax.swing.JLabel();
@@ -183,6 +194,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 460, 37, 39));
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 255, 255), 5));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -323,7 +335,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 340, -1, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 330, -1, -1));
 
         jLabel43.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel43.setText("*SSN");
@@ -339,6 +351,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Edit Personal Details of Patient", jPanel1);
 
+        jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 255, 204), 5, true));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -419,7 +432,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 340, -1, -1));
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 330, -1, -1));
 
         jTabbedPane1.addTab("Add/Edit Guardian Details", jPanel2);
 
@@ -436,71 +449,6 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
 
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel24.setText("Doctor First Name*");
-        jPanel7.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
-
-        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel25.setText("Doctor Last Name*");
-        jPanel7.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
-
-        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel27.setText("Phone Number*");
-        jPanel7.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, -1, -1));
-
-        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel28.setText("Email ID*");
-        jPanel7.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, -1, -1));
-
-        jLabel30.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel30.setText("Address");
-        jPanel7.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, -1, -1));
-
-        jTextField16.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jTextField16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField16ActionPerformed(evt);
-            }
-        });
-        jPanel7.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 200, 20));
-
-        jTextField17.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jTextField17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField17ActionPerformed(evt);
-            }
-        });
-        jPanel7.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 200, 20));
-
-        jTextField19.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jTextField19.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField19ActionPerformed(evt);
-            }
-        });
-        jPanel7.add(jTextField19, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, 200, -1));
-
-        jTextField22.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jTextField22.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField22ActionPerformed(evt);
-            }
-        });
-        jPanel7.add(jTextField22, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 270, 60));
-
-        jLabel31.setFont(new java.awt.Font("Tahoma", 3, 10)); // NOI18N
-        jLabel31.setText("(200 words only)");
-        jPanel7.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, -1, -1));
-
-        jTextField23.setText("+49");
-        jTextField23.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField23ActionPerformed(evt);
-            }
-        });
-        jPanel7.add(jTextField23, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, 50, -1));
-        jPanel7.add(jTextField24, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 100, 210, -1));
-
         jButton9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton9.setText("UPDATE RECORD");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -509,6 +457,164 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
             }
         });
         jPanel7.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 340, -1, -1));
+
+        jButton14.setText("ADD");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel20.setText("Doctor First Name");
+        jPanel7.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, -1, -1));
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel24.setText("Doctor Last Name");
+        jPanel7.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, -1, -1));
+
+        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel25.setText("Phone Number");
+        jPanel7.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, -1, -1));
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel27.setText("Email ID");
+        jPanel7.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 160, -1, -1));
+
+        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel28.setText("Address");
+        jPanel7.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 190, -1, -1));
+
+        jLabel30.setFont(new java.awt.Font("Tahoma", 3, 10)); // NOI18N
+        jLabel30.setText("(200 words only)");
+        jPanel7.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 210, -1, -1));
+
+        jTextField14.setEditable(false);
+        jTextField14.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jTextField14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField14ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 70, 250, 20));
+
+        jTextField16.setEditable(false);
+        jTextField16.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jTextField16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField16ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 100, 250, 20));
+
+        jTextField17.setEditable(false);
+        jTextField17.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jTextField17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField17ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 130, 190, 20));
+
+        jTextField19.setEditable(false);
+        jTextField19.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jTextField19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField19ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jTextField19, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 160, 250, 20));
+
+        jTextField22.setEditable(false);
+        jTextField22.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jTextField22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField22ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jTextField22, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 190, 250, 100));
+
+        jTextField23.setEditable(false);
+        jTextField23.setText("+49");
+        jTextField23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField23ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jTextField23, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 130, 50, 20));
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Doctor Id", "First Name", "Last Name", "Country Code", "Contact Number", "Email ID", "Address", "patient_quota"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTable3);
+
+        jPanel7.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 580, 290));
+
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setText("Show All Available Doctors");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setText("Show All Unvailable Doctors");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, -1));
+
+        buttonGroup1.add(jRadioButton3);
+        jRadioButton3.setText("Show All Doctors");
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, -1));
+
+        jLabel31.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel31.setText("Doctor ID");
+        jPanel7.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, -1, -1));
+
+        jTextField24.setEditable(false);
+        jPanel7.add(jTextField24, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 40, 250, -1));
+
+        jLabel46.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel46.setText("Patient Quota");
+        jPanel7.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 300, -1, -1));
+
+        jTextField39.setEditable(false);
+        jPanel7.add(jTextField39, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 300, 250, -1));
 
         jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -748,7 +854,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         // Add/Edit personal details of patient
-        String patient_id = (String)jTextField1.getText();
+//        String patient_id = (String)jTextField1.getText();
         String p_firstname = jTextField2.getText();
         
         String p_lastname = jTextField3.getText();
@@ -821,6 +927,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
         //After Clicking on Search button:
         String SSN = jTextField1.getText();
         int g_id = 0;
+        int d_id = 0;
         try
         {
             if(SSN.equals(""))
@@ -833,7 +940,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
                 Connection con = ConnectionProvider.getCon();
                 Statement stm = con.createStatement();
                 //To fetch personal patient details
-                ResultSet rs = stm.executeQuery("select p_firstname, p_lastname, p_DOB, address, country_code, contact_number, p_email, p_gender, blood_group, p_age, past_diseases, SSN, guardian_id "
+                ResultSet rs = stm.executeQuery("select p_firstname, p_lastname, p_DOB, address, country_code, contact_number, p_email, p_gender, blood_group, p_age, past_diseases, SSN, guardian_id, doctor_id "
                         + "from patient_details where SSN = '"+SSN+"'");
                 if(rs.next())
                 {
@@ -852,6 +959,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
                   jTextField6.setText(rs.getString(7));
                   jTextField35.setText(rs.getString(12));
                   g_id = rs.getInt("guardian_id");
+                  d_id = rs.getInt("doctor_id");
                 }
                 else
                 {
@@ -875,7 +983,25 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
 //                  jComboBox2.setText(rs.getString(7));
                 }
                 }
-                
+                //To fetch Doctor Details
+                if(d_id != 0)
+                { 
+                ResultSet rs2 = stm.executeQuery("select * from doctor_details where doctor_id = "+d_id+"");
+
+                if(rs2.next())
+                {
+                                       
+                    //fill all fields with DB values
+                  jTextField24.setText(rs2.getString(1));
+                  jTextField14.setText(rs2.getString(2));
+                  jTextField16.setText(rs2.getString(3));
+                  jTextField23.setText(rs2.getString(4));
+                  jTextField17.setText(rs2.getString(5));
+                  jTextField19.setText(rs2.getString(6));
+                  jTextField22.setText(rs2.getString(7));
+                  jTextField39.setText(rs2.getString(8));
+                }
+                }
                 
             }
         }
@@ -884,46 +1010,6 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
         
-//        //To fetch Guardian Details
-//        try
-//        {
-//            if(SSN.equals(""))
-//            {
-//                JOptionPane.showMessageDialog(null, "Please enter SSN(Social Security Number)!");
-//            }
-//            else
-//            {   // Create connection only if guardian exists
-//                if(g_id == 0)
-//                {
-//               //Call connection 
-//                Connection con = ConnectionProvider.getCon();
-//                Statement stm = con.createStatement();
-//                ResultSet rs = stm.executeQuery("select g_firstname, g_lastname, country_code, contact_number, address, patient_relationship, g_gender"
-//                        + "from guardian_details where guardian_id = '"+g_id+"'");
-////                if(rs.next())
-////                {
-////                                       
-////                    //fill all fields with DB values
-////                  jTextField5.setText(rs.getString(1));
-////                  jTextField13.setText(rs.getString(2));
-////                  jTextField20.setText(rs.getString(3));
-////                  jTextField21.setText(rs.getString(4));
-////                  jTextField18.setText(rs.getString(5));
-////                  jTextField15.setText(rs.getString(6));
-//////                  jComboBox2.setText(rs.getString(7));
-////                }
-//                else
-//                {
-//                   jLabel14.setVisible(true); 
-//                }
-//                }
-//                
-//            }
-//        }
-//        catch(Exception e)
-//        {
-//            JOptionPane.showMessageDialog(null, e.getMessage());
-//        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -997,7 +1083,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
         // Add/Edit Guardian details of patient
         String g_fname = jTextField5.getText();
         String g_lastname = jTextField13.getText();
-        String relationship = jTextField15.getText();
+        String patient_relationship = jTextField15.getText();
         String gender = (String)jComboBox2.getSelectedItem();
         String address = jTextField18.getText();
         String country_code = jTextField20.getText();
@@ -1020,7 +1106,10 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
                 Statement stm = con.createStatement();
   
                 //Enter data into DB guardian_details
-                stm.executeUpdate("update guardian_details Inner JOIN patient_details set guardian_details.g_fname='"+g_fname+"',guardian_details.g_lastname='"+g_lastname+"',guardian_details.relationship='"+relationship+"',guardian_details.gender='"+gender+"',guardian_details.address='"+address+"',guardian_details.country_code='"+country_code+"',guardian_details.contact_number='"+contact_number+"' where A.SSN='"+SSN+"'");
+                stm.executeUpdate("update guardian_details Inner JOIN patient_details on (guardian_details.guardian_id = patient_details.guardian_id)"
+                        + "set guardian_details.g_fname='"+g_fname+"',guardian_details.g_lastname='"+g_lastname+"',guardian_details.patient_relationship='"+patient_relationship+"',"
+                                + "guardian_details.gender='"+gender+"',guardian_details.address='"+address+"',guardian_details.country_code='"+country_code+"',"
+                                        + "guardian_details.contact_number='"+contact_number+"'");
                 JOptionPane.showMessageDialog(null, "Updated Successfully!!");
                 setVisible(false);
                 new UPDATE_PATIENT_DATA().setVisible(true);
@@ -1047,27 +1136,36 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
+        // Add/Update Doctor records
+        //Type conversion from String to Integer
+        String doc_id = jTextField24.getText();
+        int doctor_id = Integer.parseInt(doc_id);
+        String SSN = jTextField35.getText();
+        
+        String patient_capacity = jTextField39.getText();
+        int patient_quota = Integer.parseInt(patient_capacity);
+        
+        try
+                {
+                 if(patient_quota == 0) 
+                 {
+                     JOptionPane.showMessageDialog(null, "Selected Doctor cannot be added to the patient as there is no patient quota");
+                 }else{
+                //Call connection
+                Connection con = ConnectionProvider.getCon();
+                Statement stm = con.createStatement();
+  
+                //Enter data into DB guardian_details
+                stm.executeUpdate("update patient_details set doctor_id='"+doctor_id+"' where SSN='"+SSN+"'");
+                JOptionPane.showMessageDialog(null, "Updated Successfully!!");
+                setVisible(false);
+                new UPDATE_PATIENT_DATA().setVisible(true);
+                }
+                }catch(Exception e)
+                    {
+                        JOptionPane.showMessageDialog(null, e.getMessage());
+                    }
     }//GEN-LAST:event_jButton8ActionPerformed
-
-    private void jTextField16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField16ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField16ActionPerformed
-
-    private void jTextField17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField17ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField17ActionPerformed
-
-    private void jTextField19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField19ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField19ActionPerformed
-
-    private void jTextField22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField22ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField22ActionPerformed
-
-    private void jTextField23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField23ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField23ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
@@ -1121,6 +1219,128 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField35ActionPerformed
 
+    private void jTextField14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField14ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField14ActionPerformed
+
+    private void jTextField16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField16ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField16ActionPerformed
+
+    private void jTextField17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField17ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField17ActionPerformed
+
+    private void jTextField19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField19ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField19ActionPerformed
+
+    private void jTextField22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField22ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField22ActionPerformed
+
+    private void jTextField23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField23ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField23ActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+        //Show Available Doctors only
+        if(jRadioButton1.isSelected());
+        {
+          try
+            {
+                //Call connection
+                Connection con = ConnectionProvider.getCon();
+                Statement stm = con.createStatement();
+                ResultSet rs = stm.executeQuery("select * from doctor_details "
+                        + "where patient_quota > 0");                   
+                DefaultTableModel tm = (DefaultTableModel)jTable3.getModel();
+                tm.setRowCount(0);
+                while(rs.next())
+                {
+                    Object obj[] = {rs.getString("doctor_id"),rs.getString("d_firstname"),rs.getString("d_lastname"),rs.getString("country_code"),rs.getString("contact_number"),rs.getString("d_email"),rs.getString("address"),rs.getString("patient_quota")};
+                    tm.addRow(obj);
+                }        
+            }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }  
+        }
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        // TODO add your handling code here:
+        //Show UNAvailable Doctors only
+        if(jRadioButton2.isSelected());
+        {
+          try
+            {
+                //Call connection
+                Connection con = ConnectionProvider.getCon();
+                Statement stm = con.createStatement();
+                ResultSet rs = stm.executeQuery("select * from doctor_details "
+                        + "where patient_quota = 0");                   
+                DefaultTableModel tm = (DefaultTableModel)jTable3.getModel();
+                tm.setRowCount(0);
+                while(rs.next())
+                {
+                    Object obj[] = {rs.getString("doctor_id"),rs.getString("d_firstname"),rs.getString("d_lastname"),rs.getString("country_code"),rs.getString("contact_number"),rs.getString("d_email"),rs.getString("address"),rs.getString("patient_quota")};
+                    tm.addRow(obj);
+                }        
+            }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }  
+        }
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+        // TODO add your handling code here:
+        //Show All Doctors
+        if(jRadioButton3.isSelected());
+        {
+          try
+            {
+                //Call connection
+                Connection con = ConnectionProvider.getCon();
+                Statement stm = con.createStatement();
+                ResultSet rs = stm.executeQuery("select * from doctor_details");                   
+                DefaultTableModel tm = (DefaultTableModel)jTable3.getModel();
+                tm.setRowCount(0);
+                while(rs.next())
+                {
+                    Object obj[] = {rs.getString("doctor_id"),rs.getString("d_firstname"),rs.getString("d_lastname"),rs.getString("country_code"),rs.getString("contact_number"),rs.getString("d_email"),rs.getString("address"),rs.getString("patient_quota")};
+                    tm.addRow(obj);
+                }        
+            }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }  
+        }
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+        //Jtable to Jtextfield
+        DefaultTableModel tm = (DefaultTableModel)jTable3.getModel();
+        int SelectedRowIndex = jTable3.getSelectedRow();
+       
+        jTextField24.setText(tm.getValueAt(SelectedRowIndex,0).toString());
+        jTextField14.setText(tm.getValueAt(SelectedRowIndex,1).toString());
+        jTextField16.setText(tm.getValueAt(SelectedRowIndex,2).toString());
+        jTextField23.setText(tm.getValueAt(SelectedRowIndex,3).toString());
+        
+        jTextField17.setText(tm.getValueAt(SelectedRowIndex,4).toString());
+        jTextField19.setText(tm.getValueAt(SelectedRowIndex,5).toString());
+        jTextField22.setText(tm.getValueAt(SelectedRowIndex,6).toString());
+        jTextField39.setText(tm.getValueAt(SelectedRowIndex,7).toString());
+        
+    }//GEN-LAST:event_jButton14ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1157,12 +1377,13 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup4;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1186,6 +1407,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -1213,6 +1435,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1226,14 +1449,20 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
+    private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField17;
@@ -1260,6 +1489,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField36;
     private javax.swing.JTextField jTextField37;
     private javax.swing.JTextField jTextField38;
+    private javax.swing.JTextField jTextField39;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
