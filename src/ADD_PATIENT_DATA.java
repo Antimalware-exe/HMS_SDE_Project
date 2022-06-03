@@ -343,7 +343,7 @@ public class ADD_PATIENT_DATA extends javax.swing.JFrame {
                 ps.execute();
                 //Enter data into DB hms_patient
                 //Keeping in mind that patient id is auto incremented and generated
-                JOptionPane.showMessageDialog(null, "New Patient added Successfully!!");
+                JOptionPane.showMessageDialog(null, "New Patient added Successfully!");
                 setVisible(false);
                 new ADD_PATIENT_DATA().setVisible(true);
             }
