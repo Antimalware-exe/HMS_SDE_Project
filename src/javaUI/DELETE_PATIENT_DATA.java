@@ -1,4 +1,6 @@
-import Project.ConnectionProvider;
+package javaUI;
+
+import logic.ConnectionProvider;
 import java.sql.*;
 import javax.swing.JOptionPane;
 

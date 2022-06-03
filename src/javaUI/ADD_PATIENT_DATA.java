@@ -1,5 +1,7 @@
+package javaUI;
 
-import Project.ConnectionProvider;
+
+import logic.ConnectionProvider;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import java.time.LocalDate;
