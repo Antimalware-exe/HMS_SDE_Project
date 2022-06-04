@@ -9,12 +9,12 @@ package javaUI;
  *
  * @author dwive
  */
-public class MAINSCREEN extends javax.swing.JFrame {
+public class MainScreen extends javax.swing.JFrame {
 
     /**
-     * Creates new form mainscreen
+     * Creates new form main screen
      */
-    public MAINSCREEN() {
+    public MainScreen() {
         initComponents();
     }
 
@@ -222,7 +222,7 @@ public class MAINSCREEN extends javax.swing.JFrame {
 
         getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 1000, 330));
 
-        jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/loggout small.png"))); // NOI18N
+        jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaUI/loggout small.png"))); // NOI18N
         jButton20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton20ActionPerformed(evt);
@@ -272,7 +272,7 @@ public class MAINSCREEN extends javax.swing.JFrame {
         // TODO add your handling code here:
         //Come to login screen
         setVisible(false);
-        new LOGIN().setVisible(true);
+        new Login().setVisible(true);
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -310,21 +310,23 @@ public class MAINSCREEN extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MAINSCREEN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MAINSCREEN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MAINSCREEN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MAINSCREEN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MAINSCREEN().setVisible(true);
+                new MainScreen().setVisible(true);
             }
         });
     }

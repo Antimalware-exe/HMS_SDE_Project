@@ -1,16 +1,15 @@
 package javaUI;
 
-
 import logic.ConnectionProvider;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import java.time.LocalDate;
+import logic.PatientDetails;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author dwive
@@ -71,7 +70,7 @@ public class ADD_PATIENT_DATA extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back small.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaUI/back small.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -240,7 +239,7 @@ public class ADD_PATIENT_DATA extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        new MAINSCREEN().setVisible(true);
+        new MainScreen().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
@@ -269,91 +268,95 @@ public class ADD_PATIENT_DATA extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        
+
         String p_firstname = jTextField2.getText();
-        
+
         String p_lastname = jTextField3.getText();
-      
+
         //type conversion for date
         String date = jTextField7.getText();
         LocalDate p_DOB = LocalDate.parse(date);
-        
+
         String address = jTextField4.getText();
-        
+
         String country_code = jTextField11.getText();
-        
+
         //type conversion for contactnumber to integer
         String phone_number = jTextField12.getText();
         int contact_number = Integer.parseInt(phone_number);
-        
+
         String p_email = jTextField6.getText();
-        
-        String p_gender = (String)jComboBox1.getSelectedItem();
-        
+
+        String p_gender = (String) jComboBox1.getSelectedItem();
+
         String blood_group = jTextField8.getText();
-        
+
         //type conversion for age to integer
         String age = jTextField10.getText();
         int p_age = Integer.parseInt(age);
-        
+
         String past_diseases = jTextField9.getText();
-        
-        
+
         String SSN = jTextField1.getText();
-        
-        
 
         int triage_id = 0;
         int doctor_id = 0;
         int nurse_id = 0;
         int ward_id = 0;
         int guardian_id = 0;
-        
-        String query = "insert into patient_details(p_firstname, p_lastname, p_DOB, address, country_code, contact_number, p_email, p_gender, blood_group, p_age, past_diseases, SSN, "
-                + "triage_id, doctor_id, nurse_id, ward_id, guardian_id) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        try
-        {
 
-            if( SSN.equals(""))
-            {   
-                JOptionPane.showMessageDialog(null, "Please enter SSN(Social Security Number)!");
-            }
-            else
-            {
-                //Call connection
-                Connection con = ConnectionProvider.getCon();
-//                Statement stm = con.createStatement();
-                PreparedStatement ps = con.prepareStatement(query);
-                ps.setString(1, p_firstname);
-                ps.setString(2, p_lastname);
-                ps.setDate(3, java.sql.Date.valueOf(p_DOB));
-                ps.setString(4, address);
-                ps.setString(5, country_code);
-                ps.setInt(6, contact_number);
-                ps.setString(7, p_email);
-                ps.setString(8, p_gender);
-                ps.setString(9, blood_group);
-                ps.setInt(10, p_age);
-                ps.setString(11, past_diseases);
-                ps.setString(12, SSN);
-                ps.setInt(13, triage_id);
-                ps.setInt(14, doctor_id);
-                ps.setInt(15, nurse_id);
-                ps.setInt(16, ward_id);
-                ps.setInt(17, guardian_id);
-//                ps.setString(17, SSN);
-                ps.execute();
-                //Enter data into DB hms_patient
-                //Keeping in mind that patient id is auto incremented and generated
+        if (SSN.equals("")) {
+            JOptionPane.showMessageDialog(null, "Please enter SSN(Social Security Number)!");
+        } else {
+            String status = PatientDetails.addPatient(p_firstname, p_lastname, p_DOB, address, country_code, contact_number, p_email, p_gender, blood_group, p_age, past_diseases, SSN, triage_id, doctor_id, nurse_id, ward_id, guardian_id);
+            if ("SUCCESS".equals(status)) {
                 JOptionPane.showMessageDialog(null, "New Patient added Successfully!");
                 setVisible(false);
                 new ADD_PATIENT_DATA().setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, status);
             }
         }
-        catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+
+//        String query = "insert into patient_details(p_firstname, p_lastname, p_DOB, address, country_code, contact_number, p_email, p_gender, blood_group, p_age, past_diseases, SSN, "
+//                + "triage_id, doctor_id, nurse_id, ward_id, guardian_id) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+//        try {
+//
+//            if (SSN.equals("")) {
+//                JOptionPane.showMessageDialog(null, "Please enter SSN(Social Security Number)!");
+//            } else {
+//                //Call connection
+//                Connection con = ConnectionProvider.getCon();
+////                Statement stm = con.createStatement();
+//                PreparedStatement ps = con.prepareStatement(query);
+//                ps.setString(1, p_firstname);
+//                ps.setString(2, p_lastname);
+//                ps.setDate(3, java.sql.Date.valueOf(p_DOB));
+//                ps.setString(4, address);
+//                ps.setString(5, country_code);
+//                ps.setInt(6, contact_number);
+//                ps.setString(7, p_email);
+//                ps.setString(8, p_gender);
+//                ps.setString(9, blood_group);
+//                ps.setInt(10, p_age);
+//                ps.setString(11, past_diseases);
+//                ps.setString(12, SSN);
+//                ps.setInt(13, triage_id);
+//                ps.setInt(14, doctor_id);
+//                ps.setInt(15, nurse_id);
+//                ps.setInt(16, ward_id);
+//                ps.setInt(17, guardian_id);
+////                ps.setString(17, SSN);
+//                ps.execute();
+//                //Enter data into DB hms_patient
+//                //Keeping in mind that patient id is auto incremented and generated
+//                JOptionPane.showMessageDialog(null, "New Patient added Successfully!");
+//                setVisible(false);
+//                new ADD_PATIENT_DATA().setVisible(true);
+//            }
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, e.getMessage());
+//        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed

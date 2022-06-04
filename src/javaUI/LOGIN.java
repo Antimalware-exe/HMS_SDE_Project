@@ -1,29 +1,27 @@
 package javaUI;
 
-
-
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import logic.ConnectionProvider;
+import logic.LoginHandler;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author dwive
  */
-public class LOGIN extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame {
 
     /**
      * Creates new form Login
      */
-    public LOGIN() {
+    public Login() {
         initComponents();
     }
 
@@ -100,33 +98,22 @@ public class LOGIN extends javax.swing.JFrame {
         //LOGIN CODE
         String username = jTextField1.getText();
         String password = jPasswordField1.getText();
-        String sql = "select * from user_login where username='"+username+"' and password='"+password+"'";
-            try{
-                //ESTABLISH CONNECTION TO DB
-                Connection con =ConnectionProvider.getCon();
-                Statement stm = con.createStatement();
-                // hms query will run
-                ResultSet rs = stm.executeQuery(sql);
-                
-                if(rs.next()){ //If userid and password is correct then move to MAINSCREEN
-                setVisible(false);
-                new MAINSCREEN().setVisible(true);
-                }else{
-                //if userid and password is wrong then throw error    
-                    JOptionPane.showMessageDialog(null,"Incorrect Username or Password");
-                    jTextField1.setText("");
-                    jPasswordField1.setText("");
-                    }
-                }catch (Exception e) {
-                    System.out.println(e.getMessage());
-                
-            }               
+        boolean loggedIn = LoginHandler.stmt(username, password);
+        if (loggedIn) { //If userid and password is correct then move to Landing
+            setVisible(false);
+            new MainScreen().setVisible(true);
+        } else {
+            //if userid and password is wrong then throw error    
+            JOptionPane.showMessageDialog(null, "Incorrect Username or Password");
+            jTextField1.setText("");
+            jPasswordField1.setText("");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        int a=JOptionPane.showConfirmDialog(null, "Do you really want to close application?","Select",JOptionPane.YES_NO_OPTION);
-        if(a==0)
+        int a = JOptionPane.showConfirmDialog(null, "Do you really want to close application?", "Select", JOptionPane.YES_NO_OPTION);
+        if (a == 0)
             System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -151,21 +138,23 @@ public class LOGIN extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LOGIN().setVisible(true);
+                new Login().setVisible(true);
             }
         });
     }
