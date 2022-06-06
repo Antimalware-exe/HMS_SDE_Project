@@ -36,15 +36,10 @@ public class MAINSCREEN extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jButton15 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
         jButton19 = new javax.swing.JButton();
@@ -53,7 +48,6 @@ public class MAINSCREEN extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jButton20 = new javax.swing.JButton();
@@ -114,7 +108,7 @@ public class MAINSCREEN extends javax.swing.JFrame {
         });
         jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 160, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 200, 240));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 180, 240));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -122,32 +116,18 @@ public class MAINSCREEN extends javax.swing.JFrame {
         jLabel4.setText("ROOM DETAILS");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 140, -1));
 
-        jButton10.setText("ASSIGN ROOM TO PATIENT");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        jButton12.setText("ADD ROOM TO HOSPITAL");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                jButton12ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 230, -1));
+        jPanel2.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 230, -1));
 
-        jButton11.setText("UNASSIGN ROOM FROM PATIENT");
-        jPanel2.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 230, -1));
+        jButton13.setText("DELETE ROOM FROM HOSPITAL");
+        jPanel2.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 230, -1));
 
-        jButton12.setText("ADD ROOM DATA");
-        jPanel2.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 230, -1));
-
-        jButton13.setText("DELETE ROOM DATA");
-        jPanel2.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 230, -1));
-
-        jButton14.setText("VIEW ALL ROOMS");
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 230, -1));
-
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, 280, 240));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, 250, 240));
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -155,32 +135,21 @@ public class MAINSCREEN extends javax.swing.JFrame {
         jLabel5.setText("MEDICINE DETAILS");
         jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 160, -1));
 
-        jButton15.setText("ASSIGN MEDICINE TO PATIENT");
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
-            }
-        });
-        jPanel5.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 230, -1));
-
-        jButton16.setText("UNASSIGN MEDICINE FROM PATIENT");
-        jPanel5.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 230, -1));
-
         jButton17.setText("ADD MEDICINE DATA");
-        jPanel5.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 230, -1));
+        jPanel5.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 230, -1));
 
         jButton18.setText("DELETE MEDICINE DATA");
-        jPanel5.add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 230, -1));
+        jPanel5.add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 230, -1));
 
-        jButton19.setText("VIEW AVAILABLE MEDICINES");
+        jButton19.setText("VIEW MEDICINES");
         jButton19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton19ActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 230, -1));
+        jPanel5.add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 230, -1));
 
-        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 30, 250, 240));
+        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 30, 280, 240));
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -188,29 +157,31 @@ public class MAINSCREEN extends javax.swing.JFrame {
         jLabel3.setText("DOCTOR DETAILS");
         jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 150, -1));
 
-        jButton3.setText("ADD DOCTOR DATA");
+        jButton3.setText("ADD DOCTOR/NURSE ");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 180, -1));
+        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 210, -1));
 
-        jButton7.setText("UPDATE DOCTOR DATA");
-        jPanel4.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 180, -1));
+        jButton7.setText("UPDATE DOCTOR/NURSE DATA");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 210, -1));
 
-        jButton8.setText("DELETE DOCTOR DATA");
+        jButton8.setText("DELETE DOCTOR/NURSE DATA");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 180, -1));
+        jPanel4.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 210, -1));
 
-        jButton9.setText("VIEW DOCTOR DATA");
-        jPanel4.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 180, -1));
-
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 210, 240));
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 230, 240));
 
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -242,28 +213,22 @@ public class MAINSCREEN extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton10ActionPerformed
-
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton14ActionPerformed
-
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton15ActionPerformed
-
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        //open add doctor/nurse to hospital
+        setVisible(false);
+        new ADD_DOCTOR_NURSE().setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
+        //Delete Doctor/Nurse from hospital
+        setVisible(false);
+        new DELETE_DOCTOR_NURSE().setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
@@ -290,6 +255,18 @@ public class MAINSCREEN extends javax.swing.JFrame {
         setVisible(false);
         new VIEW_PATIENT_DATA().setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        new UPDATE_DOCTOR_NURSE_DETAILS().setVisible(true);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        new ADD_DELETE_ROOMS().setVisible(true);
+    }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -329,13 +306,8 @@ public class MAINSCREEN extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
@@ -347,7 +319,6 @@ public class MAINSCREEN extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

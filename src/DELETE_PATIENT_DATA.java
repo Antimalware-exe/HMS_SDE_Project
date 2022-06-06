@@ -98,8 +98,8 @@ public class DELETE_PATIENT_DATA extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 6, 180, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("*Patient UID");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
+        jLabel3.setText("SSN*");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, -1, -1));
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -151,6 +151,7 @@ public class DELETE_PATIENT_DATA extends javax.swing.JFrame {
         jLabel10.setText("Blood Group");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 100, -1));
 
+        jTextField2.setEditable(false);
         jTextField2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,6 +160,7 @@ public class DELETE_PATIENT_DATA extends javax.swing.JFrame {
         });
         getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 210, 25));
 
+        jTextField3.setEditable(false);
         jTextField3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,6 +169,7 @@ public class DELETE_PATIENT_DATA extends javax.swing.JFrame {
         });
         getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, 220, -1));
 
+        jTextField5.setEditable(false);
         jTextField5.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,6 +178,7 @@ public class DELETE_PATIENT_DATA extends javax.swing.JFrame {
         });
         getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, 210, -1));
 
+        jTextField6.setEditable(false);
         jTextField6.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,18 +187,20 @@ public class DELETE_PATIENT_DATA extends javax.swing.JFrame {
         });
         getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 200, -1));
 
+        jTextField8.setEditable(false);
         jTextField8.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField8ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 71, -1));
+        getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 71, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("Age");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 100, -1));
 
+        jTextField10.setEditable(false);
         jTextField10.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -212,6 +218,7 @@ public class DELETE_PATIENT_DATA extends javax.swing.JFrame {
         });
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, 80, 20));
 
+        jTextField4.setEditable(false);
         jTextField4.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -228,6 +235,7 @@ public class DELETE_PATIENT_DATA extends javax.swing.JFrame {
         jLabel12.setText("Disease Suffered");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 196, -1));
 
+        jTextField9.setEditable(false);
         jTextField9.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         getContentPane().add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 273, 84));
 
@@ -265,19 +273,19 @@ public class DELETE_PATIENT_DATA extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         //After Clicking on Search button:
-        String patientid = jTextField1.getText().toString();
+        String SSN = jTextField1.getText().toString();
         try
         {
-            if(patientid.equals(""))
+            if(SSN.equals(""))
             {
-                JOptionPane.showMessageDialog(null, "Please enter Patient User ID. !!");
+                JOptionPane.showMessageDialog(null, "Please enter SSN(Social Security Number) !!");
             }
             else
             {
                 //Call connection
                 Connection con = ConnectionProvider.getCon();
                 Statement stm = con.createStatement();
-//                ResultSet rs = stm.executeQuery("select * from patient_details where patientid="+patientid+");
+                ResultSet rs = stm.executeQuery("select * from patient_details where SSN = '"+SSN+"'");
                 if(rs.next())
                 {
                     //show all fields
@@ -302,6 +310,7 @@ public class DELETE_PATIENT_DATA extends javax.swing.JFrame {
                     jLabel16.setVisible(true);
                     jTextField9.setVisible(true);
                     jButton3.setVisible(true);
+                    jLabel12.setVisible(true);
 
                     //fill all fields with DB values
                     jTextField2.setText(rs.getString(2));
@@ -370,14 +379,16 @@ public class DELETE_PATIENT_DATA extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         // Delete a Patient Record
-        String patientuid = jTextField1.getText().toString();
+        String SSN = jTextField1.getText().toString();
         try
         {
                 //Call connection
                 Connection con = ConnectionProvider.getCon();
                 Statement stm = con.createStatement();
-                //Enter data into DB hms_patient
-                stm.executeUpdate("delete from hms_patient where patientuid = '"+patientuid+"' ");
+                //Delete patient, guadian details, and medicines_assigned
+                stm.executeUpdate("delete from patient_details where SSN = '"+SSN+"'");
+                stm.executeUpdate("delete from guardian_details where SSN = '"+SSN+"'");
+                stm.executeUpdate("delete from medicines_assigned where SSN = '"+SSN+"'");
                 JOptionPane.showMessageDialog(null, "Deleted Successfully!!");
                 setVisible(false);
                 new DELETE_PATIENT_DATA().setVisible(true);
