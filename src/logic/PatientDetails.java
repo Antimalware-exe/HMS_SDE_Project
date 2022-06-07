@@ -42,7 +42,7 @@ public class PatientDetails {
             ps.setInt(17, guardian_id);
 //                ps.setString(17, SSN);
             ps.execute();
-            System.out.println(ps.execute());
+//            System.out.println(ps.execute());
             return "SUCCESS";
         } catch (SQLException e) {
             System.out.println(e);
