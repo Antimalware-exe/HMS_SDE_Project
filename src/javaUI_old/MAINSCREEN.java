@@ -2,7 +2,7 @@ package javaUI_old;
 
 
 import javaUI_old.*;
-import javaUI_old.LOGIN;
+import javaUI.LOGIN;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license

@@ -15,10 +15,11 @@ import javax.swing.JOptionPane;
  */
 public class PatientDetails {
 
-    public static void addPatient(String p_fname, String p_lname, LocalDate p_DOB, int p_age, String p_gender, String p_blood_group, String p_country_code, int p_contact_number, String p_email, int p_house_number, String p_street_name, String p_city, int p_zip, String p_state, String p_country, String SSN, String p_past_diseases, LocalDate p_visit_date, int triage_id, int doctor_id, int nurse_id, int bed_id, Timestamp start_date, Timestamp end_date) {
+    public static boolean addPatient(String p_fname, String p_lname, LocalDate p_DOB, int p_age, String p_gender, String p_blood_group, String p_country_code, long p_contact_number, String p_email, int p_house_number, String p_street_name, String p_city, int p_zip, String p_state, String p_country, String SSN, String p_past_diseases, LocalDate p_visit_date, int triage_id, int doctor_id, int nurse_id, int bed_id, Timestamp start_date, Timestamp end_date) {
 
-        String query1 = "insert into patient_details(p_fname, p_lname, p_DOB, p_age, p_gender, p_blood_group, p_country_code, p_contact_number, p_email, p_house_number, p_street_name, p_city, p_zip, p_state, p_country, SSN, p_past_diseases, p_visit_date, triage_id, doctor_id, nurse_id, bed_id, start_date, end_date) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query1 = "insert into patient_details(p_fname, p_lname, p_DOB, p_age, p_gender, p_blood_group, p_country_code, p_contact_number, p_email, p_house_number, p_street_name, p_city, p_zip, p_state, p_country, SSN, p_past_diseases, p_visit_date) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+        boolean isNotExecuted = false;
         try {
             Connection con = ConnectionProvider.getCon();
             PreparedStatement ps = con.prepareStatement(query1);
@@ -30,7 +31,7 @@ public class PatientDetails {
             ps.setString(5, p_gender);
             ps.setString(6, p_blood_group);
             ps.setString(7, p_country_code);
-            ps.setInt(8, p_contact_number);
+            ps.setLong(8, p_contact_number);
             ps.setString(9, p_email);
             ps.setInt(10, p_house_number);
             ps.setString(11, p_street_name);
@@ -41,23 +42,20 @@ public class PatientDetails {
             ps.setString(16, SSN);
             ps.setString(17, p_past_diseases);
             ps.setDate(18, java.sql.Date.valueOf(p_visit_date));
-            ps.setInt(19, triage_id);
-            ps.setInt(20, doctor_id);
-            ps.setInt(21, nurse_id);
-            ps.setInt(22, bed_id);
-            ps.setTimestamp(23, start_date);
-            ps.setTimestamp(24, end_date);
+//            ps.setInt(19, triage_id);
+//            ps.setInt(20, doctor_id);
+//            ps.setInt(21, nurse_id);
+//            ps.setInt(22, bed_id);
+//            ps.setTimestamp(23, start_date);
+//            ps.setTimestamp(24, end_date);
 
-            boolean isExecuted = ps.execute();
+            isNotExecuted = ps.execute();
 
-            if (isExecuted) {
-                JOptionPane.showMessageDialog(null, "Patient details added successfully");
-            } else {
-                JOptionPane.showMessageDialog(null, "Some error occurred");
-            }
         } catch (HeadlessException | SQLException e) {
+            System.out.println("for SQL");
             System.out.println(e.getMessage());
         }
+        return isNotExecuted;
     }
 
     public static ResultSet getPatientDetails(int patient_id) {
@@ -75,7 +73,7 @@ public class PatientDetails {
 
     public static ResultSet getPatients(String SSN) {
         ResultSet rs = null;
-        String sql = "SELECT * FROM patient_details where SSN = " + SSN;
+        String sql = "SELECT * FROM patient_details where SSN = '" + SSN + "'";
         try {
             Connection con = ConnectionProvider.getCon();
             Statement stm = con.createStatement();
@@ -86,9 +84,16 @@ public class PatientDetails {
         return rs;
     }
 
-    public static void updatePatient(int patient_id, String p_fname, String p_lname, LocalDate p_DOB, int p_age, String p_gender, String p_blood_group, String p_country_code, int p_contact_number, String p_email, int p_house_number, String p_street_name, String p_city, int p_zip, String p_state, String p_country, String SSN, String p_past_diseases, LocalDate p_visit_date, int triage_id, int doctor_id, int nurse_id, int bed_id, Timestamp start_date, Timestamp end_date) {
+    public static void updatePatient(int patient_id, String p_fname, String p_lname, LocalDate p_DOB, int p_age, String p_gender, String p_blood_group, String p_country_code, long p_contact_number, String p_email, int p_house_number, String p_street_name, String p_city, int p_zip, String p_state, String p_country, String SSN, String p_past_diseases, LocalDate p_visit_date, int triage_id, int doctor_id, int nurse_id, int bed_id, Timestamp start_date, Timestamp end_date) {
 
-        String sql = "update patient_details set p_fname='" + p_fname + "', p_lname='" + p_lname + "', p_DOB='" + p_DOB + "', p_age='" + p_age + "', p_gender='" + p_gender + "', p_blood_group='" + p_blood_group + "', p_country_code='" + p_country_code + "', p_contact_number='" + p_contact_number + "', p_email='" + p_email + "', p_house_number='" + p_house_number + "', p_street_name='" + p_street_name + "', p_city='" + p_city + "', p_zip='" + p_zip + "', p_state='" + p_state + "', p_country='" + p_country + "', SSN='" + SSN + "', p_past_diseases='" + p_past_diseases + "', p_visit_date='" + p_visit_date + "', triage_id='" + triage_id + "', doctor_id='" + doctor_id + "', nurse_id='" + nurse_id + "', bed_id='" + bed_id + "', start_date='" + start_date + "', end_date='" + end_date + "' where patient_id='" + patient_id + "'";
+        String triageString = triage_id == 0 ? null : Integer.toString(triage_id);
+        String doctorString = triage_id == 0 ? null : Integer.toString(doctor_id);
+        String nurseString = triage_id == 0 ? null : Integer.toString(nurse_id);
+        String bedString = triage_id == 0 ? null : Integer.toString(bed_id);
+
+        String IDstring = "triage_id=" + triageString + ", doctor_id=" + doctorString + ", nurse_id=" + nurseString + ", bed_id=" + bedString + "";
+
+        String sql = "update patient_details set p_fname='" + p_fname + "', p_lname='" + p_lname + "', p_DOB='" + p_DOB + "', p_age='" + p_age + "', p_gender='" + p_gender + "', p_blood_group='" + p_blood_group + "', p_country_code='" + p_country_code + "', p_contact_number='" + p_contact_number + "', p_email='" + p_email + "', p_house_number='" + p_house_number + "', p_street_name='" + p_street_name + "', p_city='" + p_city + "', p_zip='" + p_zip + "', p_state='" + p_state + "', p_country='" + p_country + "', SSN='" + SSN + "', p_past_diseases='" + p_past_diseases + "', p_visit_date='" + p_visit_date + "', " + IDstring + ", start_date=" + start_date + ", end_date=" + end_date + " where patient_id='" + patient_id + "'";
 
         try {
             Connection con = ConnectionProvider.getCon();
@@ -104,9 +109,9 @@ public class PatientDetails {
     }
 
     public static void delPatient(int patient_id) {
-        
+
         String sql = "DELETE FROM patient_details WHERE patient_id = '" + patient_id + "'";
-        
+
         try {
             Connection con = ConnectionProvider.getCon();
             Statement stm = con.createStatement();

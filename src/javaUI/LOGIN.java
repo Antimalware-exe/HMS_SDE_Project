@@ -1,8 +1,8 @@
-package javaUI_old;
+package javaUI;
 
+import javaUI.MAINSCREEN;
 import javax.swing.JOptionPane;
 import logic.LoginHandler;
-import javaUI_old.MAINSCREEN;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
