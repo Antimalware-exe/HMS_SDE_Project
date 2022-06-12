@@ -15,13 +15,14 @@ import javax.swing.JOptionPane;
  */
 public class PatientDetails {
 
+    static Connection con = ConnectionProvider.getCon();
+
     public static boolean addPatient(String p_fname, String p_lname, LocalDate p_DOB, int p_age, String p_gender, String p_blood_group, String p_country_code, long p_contact_number, String p_email, int p_house_number, String p_street_name, String p_city, int p_zip, String p_state, String p_country, String SSN, String p_past_diseases, LocalDate p_visit_date, int triage_id, int doctor_id, int nurse_id, int bed_id, Timestamp start_date, Timestamp end_date) {
 
         String query1 = "insert into patient_details(p_fname, p_lname, p_DOB, p_age, p_gender, p_blood_group, p_country_code, p_contact_number, p_email, p_house_number, p_street_name, p_city, p_zip, p_state, p_country, SSN, p_past_diseases, p_visit_date) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         boolean isNotExecuted = false;
         try {
-            Connection con = ConnectionProvider.getCon();
             PreparedStatement ps = con.prepareStatement(query1);
 
             ps.setString(1, p_fname);
@@ -62,7 +63,7 @@ public class PatientDetails {
         ResultSet rs = null;
         String sql = "SELECT * FROM patient_details where patient_id = " + patient_id;
         try {
-            Connection con = ConnectionProvider.getCon();
+//            Connection con = ConnectionProvider.getCon();
             Statement stm = con.createStatement();
             rs = stm.executeQuery(sql);
         } catch (SQLException e) {
@@ -75,7 +76,7 @@ public class PatientDetails {
         ResultSet rs = null;
         String sql = "SELECT * FROM patient_details where SSN = '" + SSN + "'";
         try {
-            Connection con = ConnectionProvider.getCon();
+//            Connection con = ConnectionProvider.getCon();
             Statement stm = con.createStatement();
             rs = stm.executeQuery(sql);
         } catch (SQLException e) {
@@ -84,19 +85,12 @@ public class PatientDetails {
         return rs;
     }
 
-    public static void updatePatient(int patient_id, String p_fname, String p_lname, LocalDate p_DOB, int p_age, String p_gender, String p_blood_group, String p_country_code, long p_contact_number, String p_email, int p_house_number, String p_street_name, String p_city, int p_zip, String p_state, String p_country, String SSN, String p_past_diseases, LocalDate p_visit_date, int triage_id, int doctor_id, int nurse_id, int bed_id, Timestamp start_date, Timestamp end_date) {
+    public static void updatePatient(int patient_id, String p_fname, String p_lname, LocalDate p_DOB, int p_age, String p_gender, String p_blood_group, String p_country_code, long p_contact_number, String p_email, int p_house_number, String p_street_name, String p_city, int p_zip, String p_state, String p_country, String SSN, String p_past_diseases) {
 
-        String triageString = triage_id == 0 ? null : Integer.toString(triage_id);
-        String doctorString = triage_id == 0 ? null : Integer.toString(doctor_id);
-        String nurseString = triage_id == 0 ? null : Integer.toString(nurse_id);
-        String bedString = triage_id == 0 ? null : Integer.toString(bed_id);
-
-        String IDstring = "triage_id=" + triageString + ", doctor_id=" + doctorString + ", nurse_id=" + nurseString + ", bed_id=" + bedString + "";
-
-        String sql = "update patient_details set p_fname='" + p_fname + "', p_lname='" + p_lname + "', p_DOB='" + p_DOB + "', p_age='" + p_age + "', p_gender='" + p_gender + "', p_blood_group='" + p_blood_group + "', p_country_code='" + p_country_code + "', p_contact_number='" + p_contact_number + "', p_email='" + p_email + "', p_house_number='" + p_house_number + "', p_street_name='" + p_street_name + "', p_city='" + p_city + "', p_zip='" + p_zip + "', p_state='" + p_state + "', p_country='" + p_country + "', SSN='" + SSN + "', p_past_diseases='" + p_past_diseases + "', p_visit_date='" + p_visit_date + "', " + IDstring + ", start_date=" + start_date + ", end_date=" + end_date + " where patient_id='" + patient_id + "'";
+        String sql = "update patient_details set p_fname='" + p_fname + "', p_lname='" + p_lname + "', p_DOB='" + p_DOB + "', p_age='" + p_age + "', p_gender='" + p_gender + "', p_blood_group='" + p_blood_group + "', p_country_code='" + p_country_code + "', p_contact_number='" + p_contact_number + "', p_email='" + p_email + "', p_house_number='" + p_house_number + "', p_street_name='" + p_street_name + "', p_city='" + p_city + "', p_zip='" + p_zip + "', p_state='" + p_state + "', p_country='" + p_country + "', SSN='" + SSN + "', p_past_diseases='" + p_past_diseases + "' where patient_id = '" + patient_id + "'";
 
         try {
-            Connection con = ConnectionProvider.getCon();
+//            Connection con = ConnectionProvider.getCon();
             Statement stm = con.createStatement();
             int isExecuted = stm.executeUpdate(sql);
 
@@ -108,12 +102,64 @@ public class PatientDetails {
         }
     }
 
+    public static void assignDoctorToPatient(int patient_id, int doctor_id) {
+
+        String sql = "update patient_details set doctor_id='" + doctor_id + "' where patient_id = '" + patient_id + "'";
+
+        try {
+//            Connection con = ConnectionProvider.getCon();
+            Statement stm = con.createStatement();
+            int isExecuted = stm.executeUpdate(sql);
+
+            if (isExecuted == 1) {
+                JOptionPane.showMessageDialog(null, "Doctor has been assigned to the patient");
+            }
+        } catch (HeadlessException | SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void assignNurseToPatient(int patient_id, int nurse_id) {
+
+        String sql = "update patient_details set nurse_id='" + nurse_id + "' where patient_id = '" + patient_id + "'";
+
+        try {
+//            Connection con = ConnectionProvider.getCon();
+            Statement stm = con.createStatement();
+            int isExecuted = stm.executeUpdate(sql);
+
+            if (isExecuted == 1) {
+                JOptionPane.showMessageDialog(null, "Nurse has been assigned to the patient");
+            }
+        } catch (HeadlessException | SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static int getPatientTriageID(int patient_id) throws SQLException {
+        ResultSet rs = getPatientDetails(patient_id);
+        return rs.getInt("triage_id");
+    }
+
+    public static void setTriageId(int patient_id, int triage_id) {
+        String sql = "update patient_details set triage_id='" + triage_id + "' where patient_id = '" + patient_id + "'";
+    }
+
+    public static int getPatientBedID(int patient_id) throws SQLException {
+        ResultSet rs = getPatientDetails(patient_id);
+        return rs.getInt("bed_id");
+    }
+
+    public static void setBedId(int patient_id, int bed_id) {
+        String sql = "update patient_details set bed_id='" + bed_id + "' where patient_id = '" + patient_id + "'";
+    }
+
     public static void delPatient(int patient_id) {
 
         String sql = "DELETE FROM patient_details WHERE patient_id = '" + patient_id + "'";
 
         try {
-            Connection con = ConnectionProvider.getCon();
+//            Connection con = ConnectionProvider.getCon();
             Statement stm = con.createStatement();
             int isExecuted = stm.executeUpdate(sql);
 

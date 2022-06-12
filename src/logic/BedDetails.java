@@ -14,11 +14,12 @@ import javax.swing.JOptionPane;
  */
 public class BedDetails extends WardDetails {
 
+    static Connection con = ConnectionProvider.getCon();
+
     public static ResultSet fetchBedDetails() {
         ResultSet rs = null;
         String sql = "select * from bed_details";
         try {
-            Connection con = ConnectionProvider.getCon();
             Statement stm = con.createStatement();
             rs = stm.executeQuery(sql);
         } catch (SQLException e) {
@@ -31,7 +32,7 @@ public class BedDetails extends WardDetails {
         ResultSet rs = null;
         String sql = "select * from bed_details where bed_number='" + bed_number + "'";
         try {
-            Connection con = ConnectionProvider.getCon();
+//            Connection con = ConnectionProvider.getCon();
             Statement stm = con.createStatement();
             rs = stm.executeQuery(sql);
         } catch (SQLException e) {
@@ -44,7 +45,7 @@ public class BedDetails extends WardDetails {
         ResultSet rs = null;
         String sql = "select * from bed_details where bed_id='" + bed_id + "'";
         try {
-            Connection con = ConnectionProvider.getCon();
+//            Connection con = ConnectionProvider.getCon();
             Statement stm = con.createStatement();
             rs = stm.executeQuery(sql);
         } catch (SQLException e) {
@@ -57,7 +58,7 @@ public class BedDetails extends WardDetails {
         String sql = "update bed_details set bed_status='" + bed_status + "' where bed_id='" + bed_id + "'";
 
         try {
-            Connection con = ConnectionProvider.getCon();
+//            Connection con = ConnectionProvider.getCon();
             Statement stm = con.createStatement();
             int isExecuted = stm.executeUpdate(sql);
 
@@ -67,6 +68,75 @@ public class BedDetails extends WardDetails {
         } catch (HeadlessException | SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public static ResultSet fetchTriageDetails() {
+        TriageDetails triage_Obj = new TriageDetails();
+        return triage_Obj.getTriageDetails();
+    }
+
+    public static ResultSet fetchTriageDetails(int triage_id) {
+        ResultSet rs = null;
+        String sql = "select * from triage where triage_id='" + triage_id + "'";
+        try {
+//            Connection con = ConnectionProvider.getCon();
+            Statement stm = con.createStatement();
+            rs = stm.executeQuery(sql);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return rs;
+    }
+
+    public static int getTriageId(String triage) {
+        int triage_id = 1;
+        ResultSet rs = fetchTriageDetails();
+
+        try {
+            while (rs.next()) {
+                if (rs.getString("triage").equals(triage)) {
+                    triage_id = rs.getInt("triage_id");
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return triage_id;
+    }
+
+    public static String getTriageName(int triage_id) {
+        String triage = null;
+        ResultSet rs = fetchTriageDetails();
+
+        try {
+            while (rs.next()) {
+                if (rs.getInt("triage_id") == triage_id) {
+                    triage = rs.getString("triage");
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return triage;
+    }
+
+    public static String getPatientType(String triage) {
+        String patient_type = null;
+        ResultSet rs = fetchTriageDetails();
+
+        try {
+            while (rs.next()) {
+                if (rs.getString("triage").equals(triage)) {
+                    patient_type = rs.getString("patient_type");
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return patient_type;
     }
 
     public static String getWardType(int ward_id) {
@@ -87,7 +157,7 @@ public class BedDetails extends WardDetails {
         return ward_type;
     }
 
-    public static void allocateBedTo(String bed_number, int patient_id) {
+    public static void allocateBedTo(int patient_id, String bed_number) {
         {
             try {
                 ResultSet BD = fetchBedDetails(bed_number);

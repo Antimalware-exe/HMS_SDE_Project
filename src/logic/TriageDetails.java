@@ -13,24 +13,23 @@ import java.sql.Statement;
  *
  * @author Win
  */
-public class WardDetails extends TriageDetails {
+public class TriageDetails {
 
-    private ResultSet ward_ResultSet = null;
+    private ResultSet triage_ResultSet = null;
 
-    protected WardDetails() {
-        String sql = "select * from ward_inventory";
+    protected TriageDetails() {
+        String sql = "select * from triage";
         try {
             Connection con = ConnectionProvider.getCon();
             Statement stm = con.createStatement();
-            ward_ResultSet = stm.executeQuery(sql);
+            triage_ResultSet = stm.executeQuery(sql);
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    protected ResultSet getWardDetails() {
-        return ward_ResultSet;
+    protected ResultSet getTriageDetails() {
+        return triage_ResultSet;
     }
-
 }

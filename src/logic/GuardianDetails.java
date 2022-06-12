@@ -50,7 +50,7 @@ public class GuardianDetails {
 
     public static ResultSet getGuardian(int patient_id) {
         ResultSet rs = null;
-        String sql = "SELECT * FROM guardian_details where patient_id = " + patient_id;
+        String sql = "select * from guardian_details where patient_id='" + patient_id + "'";
         try {
             Connection con = ConnectionProvider.getCon();
             Statement stm = con.createStatement();
@@ -61,7 +61,7 @@ public class GuardianDetails {
         return rs;
     }
 
-    public static void updateGuardian(String g_fname, String g_lname, String g_gender, String g_country_code, int g_contact_number, int g_house_number, String g_street_name, String g_city, int g_zip, String g_state, String g_country, int g_relationship_id, int patient_id) {
+    public static boolean updateGuardian(String g_fname, String g_lname, String g_gender, String g_country_code, long g_contact_number, int g_house_number, String g_street_name, String g_city, int g_zip, String g_state, String g_country, int g_relationship_id, int patient_id) {
 
         String sql = "update guardian_details set g_fname='" + g_fname + "', g_lname='" + g_lname + "', g_gender='" + g_gender + "', g_country_code='" + g_country_code + "', g_contact_number='" + g_contact_number + "', g_house_number='" + g_house_number + "', g_street_name='" + g_street_name + "', g_city='" + g_city + "', g_zip='" + g_zip + "', g_state='" + g_state + "', g_country='" + g_country + "', g_relationship_id='" + g_relationship_id + "' where patient_id='" + patient_id + "'";
 
@@ -72,9 +72,13 @@ public class GuardianDetails {
 
             if (isExecuted == 1) {
                 JOptionPane.showMessageDialog(null, "Guardian data updated succesfully");
+                return true;
+            } else {
+                return false;
             }
         } catch (HeadlessException | SQLException e) {
             System.out.println(e.getMessage());
+            return false;
         }
 
     }
@@ -94,5 +98,45 @@ public class GuardianDetails {
         } catch (HeadlessException | SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public static int getRelationshipID(String relationship_name) {
+        int g_relationship_id = 1;
+
+        String sql = "select * from relationship_details where relationship_name='" + relationship_name + "'";
+
+        try {
+            Connection con = ConnectionProvider.getCon();
+            Statement stm = con.createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+            if (rs.next()) {
+                g_relationship_id = rs.getInt("relationship_id");
+            }
+        } catch (SQLException e) {
+            System.out.println("1: ");
+            System.out.println(e.getMessage());
+        }
+
+        return g_relationship_id;
+    }
+
+    public static String getRelationshipName(int g_relationship_id) {
+        String relationship_name = null;
+
+        String sql = "SELECT relationship_name FROM relationship_details where relationship_id = " + g_relationship_id;
+
+        try {
+            Connection con = ConnectionProvider.getCon();
+            Statement stm = con.createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+            if (rs.next()) {
+                relationship_name = rs.getString("relationship_name");
+            }
+        } catch (SQLException e) {
+            System.out.println("2: ");
+            System.out.print(e.getMessage());
+        }
+
+        return relationship_name;
     }
 }
