@@ -141,7 +141,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
                     jComboBox3.setVisible(true);// ward type combobox for selection
                     jTextField30.setEditable(true);//end date field
                     jLabel41.setVisible(true);//available bed text
-                    jComboBox9.setVisible(false);//input field for available beds
+                    jComboBox9.setVisible(true);//input field for available beds
                 } else {
                     jLabel36.setVisible(false);//ward type text
                     jComboBox3.setVisible(false);// ward type combobox for selection
@@ -151,6 +151,16 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
                 }
             }
         } catch (HeadlessException | SQLException ex) {
+        }
+
+        try {
+            ResultSet rs = BedDetails.fetchWardDetails();
+            while (rs.next()) {
+                String triage = rs.getString("ward_type");
+                jComboBox3.addItem(triage);
+            }
+        } catch (HeadlessException | SQLException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -1847,7 +1857,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
             jComboBox3.setVisible(true);// ward type combobox for selection
             jTextField30.setEditable(true);//end date field
             jLabel41.setVisible(true);//available bed text
-            jComboBox9.setVisible(false);//input field for available beds
+            jComboBox9.setVisible(true);//input field for available beds
         } else {
             jLabel36.setVisible(false);//ward type text
             jComboBox3.setVisible(false);// ward type combobox for selection

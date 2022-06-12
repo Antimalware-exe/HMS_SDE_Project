@@ -141,9 +141,7 @@ public class BedDetails extends WardDetails {
 
     public static String getWardType(int ward_id) {
         String ward_type = null;
-        WardDetails ward_Obj = new WardDetails();
-        ResultSet rs = ward_Obj.getWardDetails();
-
+        ResultSet rs = fetchWardDetails();
         try {
             while (rs.next()) {
                 if (rs.getInt("ward_id") == ward_id) {
@@ -155,6 +153,11 @@ public class BedDetails extends WardDetails {
         }
 
         return ward_type;
+    }
+
+    public static ResultSet fetchWardDetails() {
+        WardDetails ward_Obj = new WardDetails();
+        return ward_Obj.getWardDetails();
     }
 
     public static void allocateBedTo(int patient_id, String bed_number) {
