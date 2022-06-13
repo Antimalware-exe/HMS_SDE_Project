@@ -165,7 +165,7 @@ public class Patient_Data_Selection extends javax.swing.JFrame {
         DefaultTableModel tm = (DefaultTableModel) jTable3.getModel();
         int SelectedRowIndex = jTable3.getSelectedRow();
         int p_id = (int) tm.getValueAt(SelectedRowIndex, 0);
-        
+
         setVisible(false);
         new UPDATE_PATIENT_DATA(p_id).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -217,15 +217,16 @@ public class Patient_Data_Selection extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        
+
         DefaultTableModel tm = (DefaultTableModel) jTable3.getModel();
         int SelectedRowIndex = jTable3.getSelectedRow();
         int p_id = (int) tm.getValueAt(SelectedRowIndex, 0);
-        
-        PatientDetails.delPatientProcedure(p_id);
-        
-        setVisible(false);
-        new Patient_Data_Selection().setVisible(true);
+        if (SelectedRowIndex != -1) {
+            PatientDetails.delPatientProcedure(p_id);
+
+            setVisible(false);
+            new Patient_Data_Selection().setVisible(true);
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

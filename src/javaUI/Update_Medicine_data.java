@@ -1,23 +1,41 @@
-package javaUI;
-
-import javax.swing.JOptionPane;
-import logic.MedicineDetails;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+package javaUI;
+
+import javax.swing.JOptionPane;
+import logic.MedicineDetails;
+import java.sql.*;
+
 /**
  *
- * @author dwive
+ * @author Win
  */
-public class ADD_UPDATE_MED_INVENTORY extends javax.swing.JFrame {
+public class Update_Medicine_data extends javax.swing.JFrame {
+
+    int drug_id = 0;
 
     /**
-     * Creates new form ADD_UPDATE_MED_INVENTORY
+     * Creates new form Update_Medicine_data
+     *
+     * @param d_id
      */
-    public ADD_UPDATE_MED_INVENTORY() {
+    public Update_Medicine_data(int d_id) {
+        drug_id = d_id;
         initComponents();
+
+        try {
+            ResultSet rs = MedicineDetails.getMedicineDetails(drug_id);
+            while (rs.next()) {
+                jTextField3.setText(Integer.toString(drug_id));
+                jTextField2.setText(rs.getString("drug_name"));
+                jComboBox1.setSelectedItem(rs.getString("drug_category"));
+                jTextField4.setText(Integer.toString(rs.getInt("drug_total_qty")));
+            }
+
+        } catch (SQLException e) {
+        }
     }
 
     /**
@@ -38,13 +56,17 @@ public class ADD_UPDATE_MED_INVENTORY extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel3.setText("ADD Medicine To Inventory");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
+        jLabel3.setText("Update Medicine");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, -1, -1));
 
         jTextField2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField2.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -53,15 +75,15 @@ public class ADD_UPDATE_MED_INVENTORY extends javax.swing.JFrame {
                 jTextField2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 200, 25));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 200, 25));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Category*");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, 25));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, -1, 25));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Total Qty*");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, -1, 25));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, -1, 25));
 
         jTextField4.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField4.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -70,19 +92,19 @@ public class ADD_UPDATE_MED_INVENTORY extends javax.swing.JFrame {
                 jTextField4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 200, 25));
+        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 200, 25));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Medicine Name*");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, -1, 25));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, 25));
 
-        jButton1.setText("ADD");
+        jButton1.setText("Update");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, -1, 25));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, -1, 25));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaUI/back small.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +115,47 @@ public class ADD_UPDATE_MED_INVENTORY extends javax.swing.JFrame {
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 37, 39));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tablet", "Syrup", "Capsule", "Powder", "IV" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 200, 25));
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 200, 25));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setText("Medicine ID");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, -1, 25));
+
+        jTextField3.setEditable(false);
+        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jTextField3.setPreferredSize(new java.awt.Dimension(25, 25));
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 200, 25));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 90, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 90, 90, -1));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 80, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, -1, 80));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -108,7 +170,7 @@ public class ADD_UPDATE_MED_INVENTORY extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-
+//        String ID = jTextField3.getText()
         String name = jTextField2.getText();
         String category = (String) jComboBox1.getSelectedItem();
         String qty = jTextField4.getText();
@@ -117,19 +179,22 @@ public class ADD_UPDATE_MED_INVENTORY extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "All fields are mandatory");
         } else {
             int med_qty = Integer.parseInt(qty);
-            MedicineDetails.addNewMedicine(name, category, med_qty);
+            MedicineDetails.updateMedicineData(drug_id, name, category, med_qty);
             setVisible(false);
-            new ADD_UPDATE_MED_INVENTORY().setVisible(true);
+            new Update_Medicine_data(drug_id).setVisible(true);
         }
-
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        new MAINSCREEN().setVisible(true);
+        new VIEW_MEDS().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,24 +210,31 @@ public class ADD_UPDATE_MED_INVENTORY extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ADD_UPDATE_MED_INVENTORY.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Update_Medicine_data.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ADD_UPDATE_MED_INVENTORY.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Update_Medicine_data.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ADD_UPDATE_MED_INVENTORY.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Update_Medicine_data.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ADD_UPDATE_MED_INVENTORY.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Update_Medicine_data.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ADD_UPDATE_MED_INVENTORY().setVisible(true);
+                new Update_Medicine_data(1).setVisible(true);
             }
         });
     }
@@ -175,7 +247,11 @@ public class ADD_UPDATE_MED_INVENTORY extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

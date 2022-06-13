@@ -6,7 +6,6 @@ import javaUI.*;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author dwive
@@ -39,7 +38,6 @@ public class MAINSCREEN extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jButton17 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
         jButton19 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -95,7 +93,7 @@ public class MAINSCREEN extends javax.swing.JFrame {
         jLabel5.setText("MEDICINE DETAILS");
         jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 160, -1));
 
-        jButton17.setText("ADD/UPDATE MEDICINE DATA");
+        jButton17.setText("ADD MEDICINE DATA");
         jButton17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton17ActionPerformed(evt);
@@ -103,21 +101,13 @@ public class MAINSCREEN extends javax.swing.JFrame {
         });
         jPanel5.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 210, 25));
 
-        jButton18.setText("DELETE MEDICINE DATA");
-        jButton18.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton18ActionPerformed(evt);
-            }
-        });
-        jPanel5.add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 210, 25));
-
         jButton19.setText("VIEW MEDICINES");
         jButton19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton19ActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 210, 25));
+        jPanel5.add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 210, 25));
 
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 170, 310, 170));
 
@@ -192,7 +182,6 @@ public class MAINSCREEN extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        new VIEW_PATIENT_DATA().setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -206,12 +195,6 @@ public class MAINSCREEN extends javax.swing.JFrame {
         setVisible(false);
         new ADD_UPDATE_MED_INVENTORY().setVisible(true);
     }//GEN-LAST:event_jButton17ActionPerformed
-
-    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        // TODO add your handling code here:
-        setVisible(false);
-        new DELETE_PATIENT_DATA().setVisible(true);
-    }//GEN-LAST:event_jButton18ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -254,7 +237,6 @@ public class MAINSCREEN extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton3;

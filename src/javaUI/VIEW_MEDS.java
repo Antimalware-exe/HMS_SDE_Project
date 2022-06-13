@@ -1,12 +1,14 @@
 package javaUI;
 
-import .*;
+import javax.swing.table.DefaultTableModel;
+import logic.MedicineDetails;
+import java.sql.*;
+import logic.PatientDetails;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author dwive
@@ -18,6 +20,17 @@ public class VIEW_MEDS extends javax.swing.JFrame {
      */
     public VIEW_MEDS() {
         initComponents();
+
+        try {
+            ResultSet rs = MedicineDetails.getMedicineDetails();
+            DefaultTableModel tm = (DefaultTableModel) jTable2.getModel();
+            tm.setRowCount(0);
+            while (rs.next()) {
+                Object obj[] = {rs.getString("drug_id"), rs.getString("drug_name"), rs.getString("drug_category"), rs.getString("drug_total_qty")};
+                tm.addRow(obj);
+            }
+        } catch (SQLException e) {
+        }
     }
 
     /**
@@ -33,6 +46,10 @@ public class VIEW_MEDS extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -67,28 +84,50 @@ public class VIEW_MEDS extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable2);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 990, 300));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 990, 300));
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaUI/back small.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 0, 37, 39));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 37, 39));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("VIEW DRUG INVENTORY");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, -1));
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setText("Medicine Inventory");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, 25));
+
+        jButton1.setText("Update Item");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 100, 25));
+
+        jButton3.setText("Delete item");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, 100, 25));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 230, 10, 100));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 230, 10));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
         // TODO add your handling code here:
-        DefaultTableModel tm = (DefaultTableModel)jTable2.getModel();
-        int SelectedRowIndex = jTable2.getSelectedRow();
-        jTextField25.setText(tm.getValueAt(SelectedRowIndex,1).toString());
-        jTextField40.setText(tm.getValueAt(SelectedRowIndex,0).toString());
+//        DefaultTableModel tm = (DefaultTableModel) jTable2.getModel();
+//        int SelectedRowIndex = jTable2.getSelectedRow();
+//        if (SelectedRowIndex != -1) {
+//            String ID = tm.getValueAt(SelectedRowIndex, 0).toString();
+//            String name = tm.getValueAt(SelectedRowIndex, 0).toString();
+//            String 
+//        }
     }//GEN-LAST:event_jTable2MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -96,6 +135,25 @@ public class VIEW_MEDS extends javax.swing.JFrame {
         setVisible(false);
         new MAINSCREEN().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel tm = (DefaultTableModel) jTable2.getModel();
+        int SelectedRowIndex = jTable2.getSelectedRow();
+        if (SelectedRowIndex != -1) {
+            int drug_id = (int) tm.getValueAt(SelectedRowIndex, 0);
+
+            MedicineDetails.deleteMedicine(drug_id);
+
+            setVisible(false);
+            new VIEW_MEDS().setVisible(true);
+        } else {
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,8 +194,12 @@ public class VIEW_MEDS extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables

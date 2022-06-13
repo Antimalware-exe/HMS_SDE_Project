@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 public class MedicineDetails {
 
     public static void addNewMedicine(String drug_name, String drug_category, int drug_total_qty) {
-                
+
         String sql = "insert into medicine_inventory(drug_name, drug_category, drug_total_qty, drug_added_on) values (?,?,?,?)";
 
         try {
@@ -26,12 +26,12 @@ public class MedicineDetails {
             ps.setString(1, drug_name);
             ps.setString(2, drug_category);
             ps.setInt(3, drug_total_qty);
-            ps.setTimestamp(4, Timestamp.from(Instant.now()));
+            ps.setString(4, Timestamp.from(Instant.now()).toString().split("\\.")[0]);
 
-            boolean isExecuted = ps.execute();
+            boolean isNotExecuted = ps.execute();
 
-            if (isExecuted) {
-                JOptionPane.showMessageDialog(null, "Drug/Medicine added successfully!");
+            if (!isNotExecuted) {
+                JOptionPane.showMessageDialog(null, "Medicine added successfully!");
             } else {
                 JOptionPane.showMessageDialog(null, "Some error occurred");
             }
@@ -89,15 +89,17 @@ public class MedicineDetails {
     }
 
     public static void updateMedicineData(int drug_id, String drug_name, String drug_category, int drug_total_qty) {
-        String sql = "update medicine_inventory set drug_name='" + drug_name + "' drug_category='" + drug_category + "' drug_total_qty='" + drug_total_qty + "' where drug_id='" + drug_id + "'";
+        String sql = "update medicine_inventory set drug_name='" + drug_name + "', drug_category='" + drug_category + "', drug_total_qty='" + drug_total_qty + "' where drug_id='" + drug_id + "'";
 
         try {
             Connection con = ConnectionProvider.getCon();
             Statement stm = con.createStatement();
-            int isExecuted = stm.executeUpdate(sql);
+            int isNotExecuted = stm.executeUpdate(sql);
 
-            if (isExecuted == 1) {
-                JOptionPane.showMessageDialog(null, "Drug data updated succesfully");
+            if (isNotExecuted == 1) {
+                JOptionPane.showMessageDialog(null, "Medicine data updated succesfully");
+            } else {
+                JOptionPane.showMessageDialog(null, "Some error occurred");
             }
         } catch (HeadlessException | SQLException e) {
             System.out.println(e.getMessage());
@@ -113,7 +115,7 @@ public class MedicineDetails {
             int isExecuted = stm.executeUpdate(sql);
 
             if (isExecuted == 1) {
-                JOptionPane.showMessageDialog(null, "Drug has been removed from the inventory");
+                JOptionPane.showMessageDialog(null, "Medicine has been removed from the inventory");
             }
         } catch (HeadlessException | SQLException e) {
             System.out.println(e.getMessage());
