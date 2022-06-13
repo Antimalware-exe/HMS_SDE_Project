@@ -1539,7 +1539,6 @@
             <Component class="javax.swing.JTextField" name="jTextField30">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
-                <Property name="text" type="java.lang.String" value="YYYY-MM-DD"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1636,6 +1635,9 @@
                   <StringArray count="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox9ActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -2060,7 +2062,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="820" y="340" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="820" y="340" width="-1" height="25"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -2182,7 +2184,6 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="10" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Diagnosis:"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField28ActionPerformed"/>
@@ -2202,7 +2203,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="350" y="220" width="-1" height="30"/>
+                  <AbsoluteConstraints x="350" y="220" width="75" height="30"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -2215,7 +2216,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="350" y="260" width="-1" height="30"/>
+                  <AbsoluteConstraints x="350" y="260" width="75" height="30"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -2234,11 +2235,12 @@
                 <Component class="javax.swing.JTable" name="jTable1">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="4" rowCount="0">
+                      <Table columnCount="5" rowCount="0">
                         <Column editable="false" title="Drug ID" type="java.lang.Integer"/>
                         <Column editable="false" title="Drug Name" type="java.lang.String"/>
-                        <Column editable="true" title="No. Of Dose" type="java.lang.Integer"/>
-                        <Column editable="true" title="No. Of Days" type="java.lang.Integer"/>
+                        <Column editable="false" title="No. Of Dose" type="java.lang.Integer"/>
+                        <Column editable="false" title="No. Of Days" type="java.lang.Integer"/>
+                        <Column editable="false" title="Total quantity" type="java.lang.Integer"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -2269,6 +2271,10 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTable1FocusGained"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable1MouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

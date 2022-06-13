@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class StaffDetails {
 
-    public static void addStaff(String s_fname, String s_lname, String s_gender, String s_country_code, int s_contact_number, String s_email_address, int s_house_number, String s_street_name, String s_city, int s_zip, String s_state, String s_country, String s_specialization, String s_qualification, String s_category) {
+    public static void addStaff(String s_fname, String s_lname, String s_gender, String s_country_code, long s_contact_number, String s_email_address, int s_house_number, String s_street_name, String s_city, int s_zip, String s_state, String s_country, String s_specialization, String s_qualification, String s_category) {
 
         String sql = "insert into staff_details(s_fname, s_lname, s_gender, s_country_code, s_contact_number, s_email_address, s_house_number, s_street_name, s_city, s_zip, s_state, s_country, s_status, s_specialization, s_qualification, s_category) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
@@ -26,7 +26,7 @@ public class StaffDetails {
             ps.setString(2, s_lname);
             ps.setString(3, s_gender);
             ps.setString(4, s_country_code);
-            ps.setInt(5, s_contact_number);
+            ps.setLong(5, s_contact_number);
             ps.setString(6, s_email_address);
             ps.setInt(7, s_house_number);
             ps.setString(8, s_street_name);
@@ -41,7 +41,7 @@ public class StaffDetails {
 
             boolean isExecuted = ps.execute();
 
-            if (isExecuted) {
+            if (!isExecuted) {
                 JOptionPane.showMessageDialog(null, "Staff added successfully!");
             } else {
                 JOptionPane.showMessageDialog(null, "Some error occurred");

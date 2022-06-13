@@ -36,7 +36,6 @@ public class MAINSCREEN extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -72,7 +71,7 @@ public class MAINSCREEN extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 160, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 210, 25));
 
         jButton2.setText("ADD PATIENT");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -82,21 +81,13 @@ public class MAINSCREEN extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
 
-        jButton4.setText("UPDATE PATIENT DATA");
+        jButton4.setText("EDIT/DELETE PATIENT DATA");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 160, -1));
-
-        jButton5.setText("DELETE PATIENT DATA");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 160, -1));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 210, 25));
 
         jButton6.setText("VIEW PATIENT HISTORY");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -104,9 +95,9 @@ public class MAINSCREEN extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 160, -1));
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 210, 25));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 180, 240));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 230, 180));
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -120,7 +111,7 @@ public class MAINSCREEN extends javax.swing.JFrame {
                 jButton17ActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 230, -1));
+        jPanel5.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 210, 25));
 
         jButton18.setText("DELETE MEDICINE DATA");
         jButton18.addActionListener(new java.awt.event.ActionListener() {
@@ -128,7 +119,7 @@ public class MAINSCREEN extends javax.swing.JFrame {
                 jButton18ActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 230, -1));
+        jPanel5.add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 210, 25));
 
         jButton19.setText("VIEW MEDICINES");
         jButton19.addActionListener(new java.awt.event.ActionListener() {
@@ -136,9 +127,9 @@ public class MAINSCREEN extends javax.swing.JFrame {
                 jButton19ActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 230, -1));
+        jPanel5.add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 210, 25));
 
-        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 170, 280, 240));
+        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 170, 230, 170));
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -152,7 +143,7 @@ public class MAINSCREEN extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 210, -1));
+        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 210, 25));
 
         jButton7.setText("UPDATE DOCTOR/NURSE DATA");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -160,17 +151,17 @@ public class MAINSCREEN extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 210, -1));
+        jPanel4.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 210, 25));
 
-        jButton8.setText("DELETE DOCTOR/NURSE DATA");
+        jButton8.setText("DEACTIVE DOCTOR/NURSE");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 210, -1));
+        jPanel4.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 210, 25));
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, 230, 240));
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, 230, 170));
 
         jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaUI/back small.png"))); // NOI18N
         jButton20.addActionListener(new java.awt.event.ActionListener() {
@@ -226,12 +217,6 @@ public class MAINSCREEN extends javax.swing.JFrame {
         setVisible(false);
         new Patient_Data_Selection().setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-        setVisible(false);
-        new DELETE_PATIENT_DATA().setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
@@ -304,7 +289,6 @@ public class MAINSCREEN extends javax.swing.JFrame {
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;

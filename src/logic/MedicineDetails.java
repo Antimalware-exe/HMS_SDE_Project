@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 public class MedicineDetails {
 
     public static void addNewMedicine(String drug_name, String drug_category, int drug_total_qty) {
-
+                
         String sql = "insert into medicine_inventory(drug_name, drug_category, drug_total_qty, drug_added_on) values (?,?,?,?)";
 
         try {

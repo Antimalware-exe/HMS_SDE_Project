@@ -424,7 +424,7 @@ public class ADD_PATIENT_DATA extends javax.swing.JFrame {
 
         if (!"".equals(p_firstname) && !"".equals(p_lastname) && !"YYYY-MM-DD".equals(date) && !"".equals(h_num) && !"".equals(p_street) && !"".equals(p_city) && !"".equals(zipString) && !"".equals(p_state) && !"".equals(p_country) && !"".equals(p_email) && !"".equals(phone_number) && !"".equals(SSN)) {
 
-            boolean isNotExecuted = PatientDetails.addPatient(p_firstname, p_lastname, p_DOB, p_age, p_gender, p_blood_group, p_country_code, p_contact_number, p_email, p_house_number, p_street, p_city, p_zip, p_state, p_country, SSN, p_past_diseases, LocalDate.now(), 0, 0, 0, 0, null, null);
+            boolean isNotExecuted = PatientDetails.addPatient(p_firstname, p_lastname, p_DOB, p_age, p_gender, p_blood_group, p_country_code, p_contact_number, p_email, p_house_number, p_street, p_city, p_zip, p_state, p_country, SSN, p_past_diseases);
 
             if (!isNotExecuted) {
                 JOptionPane.showMessageDialog(null, "Patient details added successfully");

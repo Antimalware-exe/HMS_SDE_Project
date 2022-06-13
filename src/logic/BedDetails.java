@@ -155,19 +155,78 @@ public class BedDetails extends WardDetails {
         return ward_type;
     }
 
+    public static int getWardId(String ward_type) {
+        int ward_id = 0;
+        ResultSet rs = fetchWardDetails();
+        try {
+            while (rs.next()) {
+                if (rs.getString("ward_type").equals(ward_type)) {
+                    ward_id = rs.getInt("ward_id");
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return ward_id;
+    }
+
     public static ResultSet fetchWardDetails() {
         WardDetails ward_Obj = new WardDetails();
         return ward_Obj.getWardDetails();
+    }
+
+    public static void setTriageId(int patient_id, int triage_id) {
+        String sql = "update patient_details set triage_id='" + triage_id + "' where patient_id = '" + patient_id + "'";
+
+        try {
+//            Connection con = ConnectionProvider.getCon();
+            Statement stm = con.createStatement();
+            int isExecuted = stm.executeUpdate(sql);
+
+            if (isExecuted == 1) {
+                JOptionPane.showMessageDialog(null, "Triage of the patient has been updated successfully");
+            }
+        } catch (HeadlessException | SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void deallocateBedFrom(int patient_id) {
+
+        try {
+            int bed_id = PatientDetails.getPatientBedID(patient_id);
+
+            String sql = "";
+            if (bed_id != 0) {
+                sql = "update patient_details set bed_id=NULL where patient_id='" + patient_id + "'";
+            }
+//                Connection con = ConnectionProvider.getCon();
+            Statement stm = con.createStatement();
+            int isExecuted = stm.executeUpdate(sql);
+
+            if (isExecuted == 1) {
+                updateBedStatus(bed_id, "vacant");
+            }
+        } catch (HeadlessException | SQLException ex) {
+//                Logger.getLogger(BedDetails.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
+        }
     }
 
     public static void allocateBedTo(int patient_id, String bed_number) {
         {
             try {
                 ResultSet BD = fetchBedDetails(bed_number);
-                int bed_id = BD.getInt("bed_id");
-                String sql = "update patient_details set bed_id='" + bed_id + "' where patient_id='" + patient_id + "'";
-
-                Connection con = ConnectionProvider.getCon();
+                int bed_id = 0;
+                while (BD.next()) {
+                    bed_id = BD.getInt("bed_id");
+                }
+                String sql = "";
+                if (bed_id != 0) {
+                    sql = "update patient_details set bed_id='" + bed_id + "' where patient_id='" + patient_id + "'";
+                }
+//                Connection con = ConnectionProvider.getCon();
                 Statement stm = con.createStatement();
                 int isExecuted = stm.executeUpdate(sql);
 

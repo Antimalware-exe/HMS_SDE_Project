@@ -41,7 +41,7 @@
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="80" y="160" width="180" height="240"/>
+          <AbsoluteConstraints x="80" y="160" width="230" height="180"/>
         </Constraint>
       </Constraints>
 
@@ -82,7 +82,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="50" width="160" height="-1"/>
+              <AbsoluteConstraints x="10" y="50" width="210" height="25"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -101,27 +101,14 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="UPDATE PATIENT DATA"/>
+            <Property name="text" type="java.lang.String" value="EDIT/DELETE PATIENT DATA"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="90" width="160" height="-1"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton5">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="DELETE PATIENT DATA"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
-          </Events>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="130" width="160" height="-1"/>
+              <AbsoluteConstraints x="10" y="90" width="210" height="25"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -134,7 +121,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="170" width="160" height="-1"/>
+              <AbsoluteConstraints x="10" y="130" width="210" height="25"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -143,7 +130,7 @@
     <Container class="javax.swing.JPanel" name="jPanel5">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="560" y="170" width="280" height="240"/>
+          <AbsoluteConstraints x="560" y="170" width="230" height="170"/>
         </Constraint>
       </Constraints>
 
@@ -173,7 +160,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="40" width="230" height="-1"/>
+              <AbsoluteConstraints x="10" y="40" width="210" height="25"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -186,7 +173,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="80" width="230" height="-1"/>
+              <AbsoluteConstraints x="10" y="80" width="210" height="25"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -199,7 +186,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="120" width="230" height="-1"/>
+              <AbsoluteConstraints x="10" y="120" width="210" height="25"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -208,7 +195,7 @@
     <Container class="javax.swing.JPanel" name="jPanel4">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="300" y="170" width="230" height="240"/>
+          <AbsoluteConstraints x="320" y="170" width="230" height="170"/>
         </Constraint>
       </Constraints>
 
@@ -238,7 +225,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="40" width="210" height="-1"/>
+              <AbsoluteConstraints x="10" y="40" width="210" height="25"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -251,20 +238,20 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="80" width="210" height="-1"/>
+              <AbsoluteConstraints x="10" y="80" width="210" height="25"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JButton" name="jButton8">
           <Properties>
-            <Property name="text" type="java.lang.String" value="DELETE DOCTOR/NURSE DATA"/>
+            <Property name="text" type="java.lang.String" value="DEACTIVE DOCTOR/NURSE"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton8ActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="120" width="210" height="-1"/>
+              <AbsoluteConstraints x="10" y="120" width="210" height="25"/>
             </Constraint>
           </Constraints>
         </Component>

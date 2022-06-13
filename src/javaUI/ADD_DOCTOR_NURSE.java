@@ -1,18 +1,16 @@
 package javaUI;
 
-
-
-import Project.ConnectionProvider;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.awt.HeadlessException;
+import logic.ConnectionProvider;
+import java.sql.*;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
+import logic.StaffDetails;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author dwive
@@ -24,6 +22,20 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
      */
     public ADD_DOCTOR_NURSE() {
         initComponents();
+        Connection conn = ConnectionProvider.getCon();
+//        Statement stm = conn.createStatement();
+        try {
+//            Connection conn = ConnectionProvider.getCon();
+            Statement stm = conn.createStatement();
+            ResultSet rscc = stm.executeQuery("select country_code from country_code");
+            while (rscc.next()) {
+                String cc = rscc.getString("country_code");
+                jComboBox3.addItem(cc);
+                jComboBox4.addItem(cc);
+            }
+        } catch (HeadlessException | SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
@@ -42,7 +54,6 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
         jTextField12 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
@@ -66,6 +77,7 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
         jTextField55 = new javax.swing.JTextField();
         jLabel63 = new javax.swing.JLabel();
         jTextField56 = new javax.swing.JTextField();
+        jComboBox3 = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
@@ -74,7 +86,6 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
         jTextField14 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -96,6 +107,7 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
         jTextField53 = new javax.swing.JTextField();
         jTextField54 = new javax.swing.JTextField();
         jLabel61 = new javax.swing.JLabel();
+        jComboBox4 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,11 +115,11 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("First Name*");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, 25));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Last Name*");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, 25));
 
         jTextField2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
@@ -127,20 +139,12 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Phone Number*");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
-
-        jTextField11.setText("+49");
-        jTextField11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField11ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 50, 25));
-        jPanel1.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 210, 25));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, 25));
+        jPanel1.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 210, 25));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Email ID*");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, 25));
 
         jTextField6.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
@@ -156,19 +160,19 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 230, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 230, -1, 25));
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back small.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaUI/back small.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 220, 37, 39));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 40, 40));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Gender");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, 25));
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Other" }));
@@ -181,7 +185,7 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
 
         jLabel58.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel58.setText("Country");
-        jPanel1.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, -1, 20));
+        jPanel1.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, -1, 25));
 
         jTextField50.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField50.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -194,7 +198,7 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
 
         jLabel45.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel45.setText("State");
-        jPanel1.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, -1, 20));
+        jPanel1.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, -1, 25));
 
         jTextField49.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField49.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -207,7 +211,7 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
 
         jLabel44.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel44.setText("Zip Code");
-        jPanel1.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, -1, 20));
+        jPanel1.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, -1, 25));
 
         jTextField38.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField38.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -220,7 +224,7 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
 
         jLabel42.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel42.setText("City");
-        jPanel1.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, -1, 20));
+        jPanel1.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, -1, 25));
 
         jTextField37.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField37.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -233,7 +237,7 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("Street Name");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, -1, 20));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, -1, 25));
 
         jTextField34.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField34.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -246,7 +250,7 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setText("House Number");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, -1, 20));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, -1, 25));
 
         jTextField36.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField36.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -259,7 +263,7 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
 
         jLabel62.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel62.setText("Qualification");
-        jPanel1.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, 20));
+        jPanel1.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, 25));
 
         jTextField55.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField55.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -272,7 +276,7 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
 
         jLabel63.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel63.setText("Specialization");
-        jPanel1.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, 20));
+        jPanel1.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, 25));
 
         jTextField56.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField56.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -283,13 +287,20 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
         });
         jPanel1.add(jTextField56, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 200, 25));
 
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 150, 60, 25));
+
         jTabbedPane1.addTab("ADD DOCTOR", jPanel1);
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("First Name*");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, 25));
 
         jTextField5.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
@@ -301,7 +312,7 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("Last Name*");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, 25));
 
         jTextField7.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
@@ -313,7 +324,7 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("Email ID*");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, -1));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, 25));
 
         jTextField8.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
@@ -325,16 +336,8 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("Phone Number*");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
-
-        jTextField13.setText("+49");
-        jTextField13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField13ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 50, 25));
-        jPanel2.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 210, 25));
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, 25));
+        jPanel2.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 210, 25));
 
         jButton2.setText("ADD TO HOSPITAL");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -342,19 +345,19 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 230, -1, -1));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 230, -1, 25));
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back small.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaUI/back small.png"))); // NOI18N
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 220, 37, 39));
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 37, 39));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("Gender");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, -1));
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, 25));
 
         jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Other" }));
@@ -367,7 +370,7 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setText("House Number");
-        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, -1, 20));
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, -1, 25));
 
         jTextField39.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField39.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -380,7 +383,7 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("Street Name");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, -1, 20));
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, -1, 25));
 
         jTextField35.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField35.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -393,7 +396,7 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
 
         jLabel43.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel43.setText("City");
-        jPanel2.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, -1, 20));
+        jPanel2.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, -1, 25));
 
         jTextField40.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField40.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -406,7 +409,7 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
 
         jLabel46.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel46.setText("Zip Code");
-        jPanel2.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, -1, 20));
+        jPanel2.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, -1, 25));
 
         jTextField41.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField41.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -419,7 +422,7 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
 
         jLabel47.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel47.setText("State");
-        jPanel2.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, -1, 20));
+        jPanel2.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, -1, 25));
 
         jTextField51.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField51.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -432,7 +435,7 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
 
         jLabel59.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel59.setText("Country");
-        jPanel2.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, -1, 20));
+        jPanel2.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, -1, 25));
 
         jTextField52.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField52.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -445,7 +448,7 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
 
         jLabel60.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel60.setText("Qualification");
-        jPanel2.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, 20));
+        jPanel2.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, 25));
 
         jTextField53.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField53.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -467,7 +470,14 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
 
         jLabel61.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel61.setText("Specialization");
-        jPanel2.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, 20));
+        jPanel2.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, 25));
+
+        jComboBox4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox4ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 150, 60, 25));
 
         jTabbedPane1.addTab("ADD NURSE", jPanel2);
 
@@ -497,10 +507,6 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
-    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField11ActionPerformed
-
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
@@ -517,51 +523,45 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField8ActionPerformed
 
-    private void jTextField13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField13ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         //ADD doctor to hospital
         String d_firstname = jTextField2.getText();
         String d_lastname = jTextField3.getText();
         //type conversion for date
-        String address = jTextField4.getText();
-        String country_code = jTextField11.getText();
+
+        String h_num = jTextField36.getText();
+        int d_house_number = 0;
+        if (!"".equals(h_num)) {
+            d_house_number = Integer.parseInt(h_num);
+        }
+        String d_street = jTextField34.getText();
+        String d_city = jTextField37.getText();
+        String zipString = jTextField38.getText();
+        int d_zip = 0;
+        if (!"".equals(zipString)) {
+            d_zip = Integer.parseInt(zipString);
+        }
+        String d_state = jTextField49.getText();
+        String d_country = jTextField50.getText();
+
+        String country_code = (String) jComboBox3.getSelectedItem();
         //type conversion for contactnumber to integer
         String phone_number = jTextField12.getText();
-        int contact_number = Integer.parseInt(phone_number);
+        long contact_number = Long.parseLong(phone_number);
         String d_email = jTextField6.getText();
-        String patient_quota = jTextField10.getText();
-        
-        if( d_firstname.equals("") || d_lastname.equals("") || address.equals("") || country_code.equals("") || contact_number == 0 || d_email.equals(""))
-            {   
-                JOptionPane.showMessageDialog(null, "Please enter mandatory field data!!");
-            }
-        else
-        {
-            try{
-                String query1 = "insert into doctor_details(d_firstname, d_lastname, address, country_code, contact_number, d_email, patient_quota) values(?,?,?,?,?,?,?)";
-                //Call connection
-                Connection con = ConnectionProvider.getCon();
-                PreparedStatement ps1 = con.prepareStatement(query1);
-                 //Enter data into DB doctor_details
-                 //Keeping in mind that doctor id is auto incremented
-                 ps1.setString(1, d_firstname);
-                 ps1.setString(2, d_lastname);
-                 ps1.setString(3, address);
-                 ps1.setString(4, country_code);
-                 ps1.setInt(5, contact_number);
-                 ps1.setString(6, d_email);
-                 ps1.setString(7, patient_quota);
-                 ps1.execute();
-                 JOptionPane.showMessageDialog(null, "New Doctor added Successfully!");
-                 setVisible(false);
-                 new ADD_DOCTOR_NURSE().setVisible(true);
-            }
-            catch(Exception e)
-            {JOptionPane.showMessageDialog(null, e.getMessage());}
+        String d_gender = (String) jComboBox1.getSelectedItem();
+        String d_specialization = jTextField56.getText();
+        String d_qualification = jTextField55.getText();
+
+        if (!"".equals(d_firstname) && !"".equals(d_lastname) && !"".equals(h_num) && !"".equals(d_street) && !"".equals(d_city) && !"".equals(zipString) && !"".equals(d_state) && !"".equals(d_country) && !"".equals(d_email) && !"".equals(phone_number) && !"".equals(d_specialization) && !"".equals(d_qualification)) {
+            StaffDetails.addStaff(d_firstname, d_lastname, d_gender, country_code, contact_number, d_email, d_house_number, d_street, d_city, d_zip, d_state, d_specialization, d_specialization, d_qualification, "Doctor");
+            setVisible(false);
+            new ADD_DOCTOR_NURSE().setVisible(true);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Please enter mandatory field data!!");
+
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -569,44 +569,42 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         //ADD nurse to hospital
-        String n_firstname = jTextField5.getText();
-        String n_lastname = jTextField7.getText();
+        String d_firstname = jTextField5.getText();
+        String d_lastname = jTextField7.getText();
         //type conversion for date
-        String address = jTextField9.getText();
-        String country_code = jTextField13.getText();
+
+        String h_num = jTextField39.getText();
+        int d_house_number = 0;
+        if (!"".equals(h_num)) {
+            d_house_number = Integer.parseInt(h_num);
+        }
+        String d_street = jTextField35.getText();
+        String d_city = jTextField40.getText();
+        String zipString = jTextField41.getText();
+        int d_zip = 0;
+        if (!"".equals(zipString)) {
+            d_zip = Integer.parseInt(zipString);
+        }
+        String d_state = jTextField51.getText();
+        String d_country = jTextField52.getText();
+
+        String country_code = (String) jComboBox4.getSelectedItem();
         //type conversion for contactnumber to integer
         String phone_number = jTextField14.getText();
-        int contact_number = Integer.parseInt(phone_number);
-        String n_email = jTextField8.getText();
-        String patient_quota = jTextField15.getText();
-        
-        if( n_firstname.equals("") || n_lastname.equals("") || address.equals("") || country_code.equals("") || contact_number == 0 || n_email.equals(""))
-            {   
-                JOptionPane.showMessageDialog(null, "Please enter mandatory field data!!");
-            }
-        else
-        {
-            try{
-                String query1 = "insert into nurse_details(n_firstname, n_lastname, address, country_code, contact_number, n_email, patient_quota) values(?,?,?,?,?,?,?)";
-                //Call connection
-                Connection con = ConnectionProvider.getCon();
-                PreparedStatement ps1 = con.prepareStatement(query1);
-                 //Enter data into DB nurse_details
-                 //Keeping in mind that nurse id is auto incremented
-                 ps1.setString(1, n_firstname);
-                 ps1.setString(2, n_lastname);
-                 ps1.setString(3, address);
-                 ps1.setString(4, country_code);
-                 ps1.setInt(5, contact_number);
-                 ps1.setString(6, n_email);
-                 ps1.setString(7, patient_quota);
-                 ps1.execute();
-                 JOptionPane.showMessageDialog(null, "New Nurse added Successfully!");
-                 setVisible(false);
-                 new ADD_DOCTOR_NURSE().setVisible(true);
-            }
-            catch(Exception e)
-            {JOptionPane.showMessageDialog(null, e.getMessage());}
+        long contact_number = Long.parseLong(phone_number);
+        String d_email = jTextField8.getText();
+        String d_gender = (String) jComboBox2.getSelectedItem();
+        String d_specialization = jTextField54.getText();
+        String d_qualification = jTextField53.getText();
+
+        if (!"".equals(d_firstname) && !"".equals(d_lastname) && !"".equals(h_num) && !"".equals(d_street) && !"".equals(d_city) && !"".equals(zipString) && !"".equals(d_state) && !"".equals(d_country) && !"".equals(d_email) && !"".equals(phone_number) && !"".equals(d_specialization) && !"".equals(d_qualification)) {
+            StaffDetails.addStaff(d_firstname, d_lastname, d_gender, country_code, contact_number, d_email, d_house_number, d_street, d_city, d_zip, d_state, d_specialization, d_specialization, d_qualification, "Nurse");
+            setVisible(false);
+            new ADD_DOCTOR_NURSE().setVisible(true);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Please enter mandatory field data!!");
+
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -618,7 +616,7 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-         setVisible(false);
+        setVisible(false);
         new MAINSCREEN().setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -694,6 +692,14 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField56ActionPerformed
 
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -708,16 +714,24 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ADD_DOCTOR_NURSE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ADD_DOCTOR_NURSE.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ADD_DOCTOR_NURSE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ADD_DOCTOR_NURSE.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ADD_DOCTOR_NURSE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ADD_DOCTOR_NURSE.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ADD_DOCTOR_NURSE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ADD_DOCTOR_NURSE.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -737,6 +751,8 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -766,9 +782,7 @@ public class ADD_DOCTOR_NURSE extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
