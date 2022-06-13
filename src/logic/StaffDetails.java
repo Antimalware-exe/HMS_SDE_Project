@@ -96,9 +96,9 @@ public class StaffDetails {
         return rs;
     }
 
-    public static void updateStaff(int staff_id, String s_fname, String s_lname, String s_gender, String s_country_code, int s_contact_number, String s_email_address, int s_house_number, String s_street_name, String s_city, int s_zip, String s_state, String s_country, String s_specialization, String s_qualification, String s_category) {
+    public static void updateStaff(int staff_id, String s_fname, String s_lname, String s_gender, String s_country_code, long s_contact_number, String s_email_address, int s_house_number, String s_street_name, String s_city, int s_zip, String s_state, String s_country, String s_specialization, String s_qualification) {
 
-        String sql = "update staff_details set s_fname='" + s_fname + "', s_lname='" + s_lname + "', s_gender='" + s_gender + "', s_country_code='" + s_country_code + "', s_contact_number='" + s_contact_number + "', s_email_address='" + s_email_address + "', s_house_number='" + s_house_number + "', s_street_name='" + s_street_name + "', s_city='" + s_city + "', s_zip='" + s_zip + "', s_state='" + s_state + "', s_country='" + s_country + "', s_specialization='" + s_specialization + "', s_qualification='" + s_qualification + "', s_category='" + s_category + "' where staff_id='" + staff_id + "'";
+        String sql = "update staff_details set s_fname='" + s_fname + "', s_lname='" + s_lname + "', s_gender='" + s_gender + "', s_country_code='" + s_country_code + "', s_contact_number='" + s_contact_number + "', s_email_address='" + s_email_address + "', s_house_number='" + s_house_number + "', s_street_name='" + s_street_name + "', s_city='" + s_city + "', s_zip='" + s_zip + "', s_state='" + s_state + "', s_country='" + s_country + "', s_specialization='" + s_specialization + "', s_qualification='" + s_qualification + "' where staff_id='" + staff_id + "'";
 
         try {
             Connection con = ConnectionProvider.getCon();

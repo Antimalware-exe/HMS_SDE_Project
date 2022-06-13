@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class GuardianDetails {
 
-    public static void addGuardian(String g_fname, String g_lname, String g_gender, String g_country_code, int g_contact_number, int g_house_number, String g_street_name, String g_city, int g_zip, String g_state, String g_country, int g_relationship_id, int patient_id) {
+    public static void addGuardian(String g_fname, String g_lname, String g_gender, String g_country_code, long g_contact_number, int g_house_number, String g_street_name, String g_city, int g_zip, String g_state, String g_country, int g_relationship_id, int patient_id) {
 
         String query = "insert into guardian_details(g_fname, g_lname, g_gender, g_country_code, g_contact_number,g_house_number, g_street_name, g_city, g_zip, g_state , g_country, g_relationship_id, patient_id) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
@@ -26,7 +26,7 @@ public class GuardianDetails {
             ps.setString(2, g_lname);
             ps.setString(3, g_gender);
             ps.setString(4, g_country_code);
-            ps.setInt(5, g_contact_number);
+            ps.setLong(5, g_contact_number);
             ps.setInt(6, g_house_number);
             ps.setString(7, g_street_name);
             ps.setString(8, g_city);
@@ -36,9 +36,9 @@ public class GuardianDetails {
             ps.setInt(12, g_relationship_id);
             ps.setInt(13, patient_id);
 
-            boolean isExecuted = ps.execute();
+            boolean isNotExecuted = ps.execute();
 
-            if (isExecuted) {
+            if (!isNotExecuted) {
                 JOptionPane.showMessageDialog(null, "Guardian details added successfully");
             } else {
                 JOptionPane.showMessageDialog(null, "Some error occurred");
@@ -64,6 +64,8 @@ public class GuardianDetails {
     public static boolean updateGuardian(String g_fname, String g_lname, String g_gender, String g_country_code, long g_contact_number, int g_house_number, String g_street_name, String g_city, int g_zip, String g_state, String g_country, int g_relationship_id, int patient_id) {
 
         String sql = "update guardian_details set g_fname='" + g_fname + "', g_lname='" + g_lname + "', g_gender='" + g_gender + "', g_country_code='" + g_country_code + "', g_contact_number='" + g_contact_number + "', g_house_number='" + g_house_number + "', g_street_name='" + g_street_name + "', g_city='" + g_city + "', g_zip='" + g_zip + "', g_state='" + g_state + "', g_country='" + g_country + "', g_relationship_id='" + g_relationship_id + "' where patient_id='" + patient_id + "'";
+
+        System.out.println(sql);
 
         try {
             Connection con = ConnectionProvider.getCon();

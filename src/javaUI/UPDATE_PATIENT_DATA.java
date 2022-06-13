@@ -21,7 +21,7 @@ import logic.PrescriptionDetails;
  * @author dwive
  */
 public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
-    
+
     int p_id;
     String start_date = LocalDate.now().toString();
     String end_date = "YYYY-MM-DD";
@@ -112,9 +112,9 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
         } catch (HeadlessException | SQLException e) {
             System.out.println(e.getMessage());
         }
-        
+
         ResultSet rsgd = GuardianDetails.getGuardian(p_id);
-        
+
         try {
             while (rsgd.next()) {
                 jTextField5.setText(rsgd.getString("g_fname"));
@@ -145,7 +145,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
         } catch (HeadlessException | SQLException e) {
             System.out.println(e.getMessage());
         }
-        
+
         try {
             jTextField31.setText(start_date);
             ResultSet rst = BedDetails.fetchTriageDetails(PatientDetails.getPatientTriageID(p_id));
@@ -153,7 +153,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
             while (rst.next()) {
                 jComboBox4.setSelectedItem(rst.getString("triage"));
                 jTextField39.setText(rst.getString("patient_type"));
-                
+
                 if (rst.getString("patient_type").equals("in_patient")) {
                     jLabel36.setVisible(true);//ward type text
                     jComboBox3.setVisible(true);// ward type combobox for selection
@@ -172,7 +172,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
             }
         } catch (HeadlessException | SQLException ex) {
         }
-        
+
         try {
             ResultSet rs = BedDetails.fetchWardDetails();
             while (rs.next()) {
@@ -182,7 +182,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
         } catch (HeadlessException | SQLException e) {
             System.out.println(e.getMessage());
         }
-        
+
         try {
             ResultSet rs = BedDetails.fetchBedDetails(bed_id);
             while (rs.next()) {
@@ -1386,10 +1386,10 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
         // Add/Edit personal details of patient        
         String p_firstname = jTextField2.getText();
         String p_lastname = jTextField3.getText();
-        
+
         String date = jTextField7.getText();
         LocalDate p_DOB = LocalDate.parse(date);
-        
+
         String h_num = jTextField36.getText();
         int p_house_number = 0;
         if (!"".equals(h_num)) {
@@ -1404,33 +1404,33 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
         }
         String p_state = jTextField49.getText();
         String p_country = jTextField50.getText();
-        
+
         String country_code = (String) jComboBox5.getSelectedItem();
 
         //type conversion for contactnumber to integer
         String phone_number = jTextField12.getText();
         long contact_number = Long.parseLong(phone_number);
-        
+
         String p_email = jTextField6.getText();
-        
+
         String p_gender = (String) jComboBox1.getSelectedItem();
-        
+
         String blood_group = (String) jComboBox6.getSelectedItem();
 
         //type conversion for age to integer
         String age = jTextField10.getText();
         int p_age = Integer.parseInt(age);
-        
+
         String past_diseases = jTextField9.getText();
         String SSN = jTextField35.getText();
-        
+
         int triage_id = 0;
         int bed_id = 0;
-        
+
         if (!"".equals(p_firstname) && !"".equals(p_lastname) && !"YYYY-MM-DD".equals(date) && !"".equals(h_num) && !"".equals(p_street) && !"".equals(p_city) && !"".equals(zipString) && !"".equals(p_state) && !"".equals(p_country) && !"".equals(p_email) && !"".equals(phone_number) && !"".equals(SSN)) {
-            
+
             PatientDetails.updatePatient(p_id, p_firstname, p_lastname, p_DOB, p_age, p_gender, blood_group, country_code, contact_number, p_email, p_house_number, p_street, p_city, p_zip, p_state, p_country, SSN, past_diseases);
-            
+
         } else {
             JOptionPane.showMessageDialog(null, "Please enter mandatory field data!");
         }
@@ -1495,7 +1495,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
         //type conversion for contactnumber to integer
         String g_phone_number = jTextField21.getText();
         long g_contact_number = Long.parseLong(g_phone_number);
-        
+
         String h_num = jTextField51.getText();
         int g_house_number = 0;
         if (!"".equals(h_num)) {
@@ -1510,22 +1510,31 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
         }
         String g_state = jTextField55.getText();
         String g_country = jTextField56.getText();
-        
+
         if (g_fname.equals("") || g_lname.equals("") || g_country_code.equals("") || g_contact_number == 0 || g_house_number == 0 || g_zip == 0 || g_street.equals("") || g_city.equals("") || g_state.equals("") || g_country.equals("")) {
             JOptionPane.showMessageDialog(null, "Please enter all mandatory details");
         } else {
-            
+
             int RelationshipID = GuardianDetails.getRelationshipID(g_relationship);
-            
-            boolean isUpdated = GuardianDetails.updateGuardian(g_fname, g_lname, g_gender, g_country_code, g_contact_number, g_house_number, g_street, g_city, g_zip, g_state, g_country, RelationshipID, p_id);
-            
-            if (isUpdated) {
-                setVisible(false);
-                new UPDATE_PATIENT_DATA(p_id).setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "Some error occurred");
+
+            ResultSet Guardian_rs = GuardianDetails.getGuardian(p_id);
+
+            try {
+                if (Guardian_rs.next()) {
+                    boolean isUpdated = GuardianDetails.updateGuardian(g_fname, g_lname, g_gender, g_country_code, g_contact_number, g_house_number, g_street, g_city, g_zip, g_state, g_country, RelationshipID, p_id);
+
+                    if (isUpdated) {
+                        setVisible(false);
+                        new UPDATE_PATIENT_DATA(p_id).setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Some error occurred");
+                    }
+                } else {
+                    GuardianDetails.addGuardian(g_fname, g_lname, g_gender, g_country_code, g_contact_number, g_house_number, g_street, g_city, g_zip, g_state, g_country, RelationshipID, p_id);
+                }
+            } catch (SQLException ex) {
             }
-            
+
         }
 
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -1534,10 +1543,10 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Add/Update Nurse records
         String nur_id = jTextField41.getText();
-        
+
         DefaultTableModel tm = (DefaultTableModel) jTable4.getModel();
         int SelectedRowIndex = jTable4.getSelectedRow();
-        
+
         if (SelectedRowIndex != -1) {
             if (nur_id.equals(tm.getValueAt(SelectedRowIndex, 0).toString()) && !nur_id.equals("")) {
                 if ("inactive".equals(tm.getValueAt(SelectedRowIndex, 8).toString())) {
@@ -1564,7 +1573,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
         String ward_type = (String) jComboBox3.getSelectedItem();
         String bed_number = (String) jComboBox9.getSelectedItem();
         String end_date_text = jTextField30.getText();
-        
+
         if (!"".equals(end_date_text) && !"YYYY-MM-DD".equals(end_date_text)) {
             end_date = end_date_text;
         }
@@ -1603,23 +1612,23 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
                     d_id = rs.getInt("doctor_id");
                 }
                 int prescription_id = PrescriptionDetails.generatePrescription(comments, p_id, d_id);
-                
+
                 for (int i = 0; i < tm.getRowCount(); i++) {
                     drugid = tm.getValueAt(i, 0).toString();
                     int drug_id = Integer.parseInt(drugid);
-                    
+
                     drug_name = tm.getValueAt(i, 1).toString();
-                    
+
                     noofdose = tm.getValueAt(i, 2).toString();
                     int no_of_dose = Integer.parseInt(noofdose);
-                    
+
                     noofdays = tm.getValueAt(i, 3).toString();
                     int no_of_days = Integer.parseInt(noofdays);
-                    
+
                     PrescriptionDetails.addMedicinesToPrescription(prescription_id, drug_id, no_of_dose, no_of_days);
-                    
+
                 }
-                
+
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
@@ -1632,10 +1641,10 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
         // Add/Update Doctor records
         //Type conversion from String to Integer
         String doc_id = jTextField24.getText();
-        
+
         DefaultTableModel tm = (DefaultTableModel) jTable3.getModel();
         int SelectedRowIndex = jTable3.getSelectedRow();
-        
+
         if (SelectedRowIndex != -1) {
             if (doc_id.equals(tm.getValueAt(SelectedRowIndex, 0).toString()) && !doc_id.equals("")) {
                 if ("inactive".equals(tm.getValueAt(SelectedRowIndex, 8).toString())) {
@@ -1755,7 +1764,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
         //Jtable to Jtextfield
         DefaultTableModel tm = (DefaultTableModel) jTable3.getModel();
         int SelectedRowIndex = jTable3.getSelectedRow();
-        
+
         jTextField24.setText(tm.getValueAt(SelectedRowIndex, 0).toString());
         jTextField14.setText(tm.getValueAt(SelectedRowIndex, 1).toString());
         jTextField16.setText(tm.getValueAt(SelectedRowIndex, 2).toString());
@@ -1804,7 +1813,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
         String no_of_days = jTextField27.getText();
         int tot_qty_int = Integer.parseInt(no_of_days) * Integer.parseInt(no_of_dose);
         String total_qty = Integer.toString(tot_qty_int);
-        
+
         DefaultTableModel tm2 = (DefaultTableModel) jTable2.getModel();
         int SelectedRowIndex = jTable2.getSelectedRow();
         int AvailableInt = Integer.parseInt(tm2.getValueAt(SelectedRowIndex, 3).toString());
@@ -1828,7 +1837,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
             if (flag) {
                 tm.addRow(data);
             }
-            
+
         }
 
     }//GEN-LAST:event_jButton10ActionPerformed
@@ -1915,7 +1924,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
         //Jtable to Jtextfield
         DefaultTableModel tm = (DefaultTableModel) jTable4.getModel();
         int SelectedRowIndex = jTable4.getSelectedRow();
-        
+
         jTextField41.setText(tm.getValueAt(SelectedRowIndex, 0).toString());
         jTextField42.setText(tm.getValueAt(SelectedRowIndex, 1).toString());
         jTextField43.setText(tm.getValueAt(SelectedRowIndex, 2).toString());
@@ -1952,7 +1961,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
         String text = jComboBox4.getSelectedItem().toString();
         String patient_type = BedDetails.getPatientType(text);
         jTextField39.setText(patient_type.toUpperCase());
-        
+
         if (patient_type.equals("in_patient")) {
             jLabel36.setVisible(true);//ward type text
             jComboBox3.setVisible(true);// ward type combobox for selection
@@ -1977,7 +1986,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
         jComboBox9.removeAllItems();
         String text = jComboBox3.getSelectedItem().toString();
         int ward_id = BedDetails.getWardId(text);
-        
+
         ResultSet rs = BedDetails.fetchBedDetails();
         try {
             while (rs.next()) {
@@ -1987,7 +1996,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
             }
         } catch (SQLException e) {
         }
-        
+
         try {
             ResultSet rsAssignedBed = BedDetails.fetchBedDetails(bed_id);
             while (rsAssignedBed.next()) {
@@ -2088,7 +2097,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        
+
         try {
             //Call connection
             Connection con = ConnectionProvider.getCon();
@@ -2135,21 +2144,21 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                    
+
                 }
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(UPDATE_PATIENT_DATA.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(UPDATE_PATIENT_DATA.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(UPDATE_PATIENT_DATA.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(UPDATE_PATIENT_DATA.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -2160,7 +2169,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UPDATE_PATIENT_DATA(24).setVisible(true);
+                new UPDATE_PATIENT_DATA(22).setVisible(true);
             }
         });
     }
