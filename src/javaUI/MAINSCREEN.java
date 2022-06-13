@@ -188,7 +188,7 @@ public class MAINSCREEN extends javax.swing.JFrame {
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        new VIEW_DRUGS().setVisible(true);
+        new VIEW_MEDS().setVisible(true);
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

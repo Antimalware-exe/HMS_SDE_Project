@@ -1,18 +1,13 @@
 package javaUI;
 
-
-import .*;
-import Project.ConnectionProvider;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import logic.ConnectionProvider;
+import java.sql.*;
 import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author dwive
@@ -37,9 +32,9 @@ public class UPDATE_DOCTOR_NURSE_DETAILS extends javax.swing.JFrame {
         jLabel13.setVisible(false);
         jLabel15.setVisible(false);
         jTextField4.setVisible(false);
-        jLabel5.setVisible(false);      
-        jTextField11.setVisible(false);       
-        jTextField12.setVisible(false);        
+        jLabel5.setVisible(false);
+        jTextField11.setVisible(false);
+        jTextField12.setVisible(false);
     }
 
     /**
@@ -95,7 +90,7 @@ public class UPDATE_DOCTOR_NURSE_DETAILS extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Enter Doctor/Nurse ID");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, 25));
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -103,23 +98,23 @@ public class UPDATE_DOCTOR_NURSE_DETAILS extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 210, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 210, 25));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 0, 0));
         jLabel14.setText("Record Not Found!!");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, -1, -1));
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 90, -1, 25));
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jRadioButton1.setSelected(true);
         jRadioButton1.setText("Update Doctor");
-        getContentPane().add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+        getContentPane().add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jRadioButton2.setText("Update Nurse");
-        getContentPane().add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
+        getContentPane().add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("First Name*");
@@ -177,7 +172,7 @@ public class UPDATE_DOCTOR_NURSE_DETAILS extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 430, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 390, -1, 25));
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton3.setText("Search");
@@ -186,15 +181,15 @@ public class UPDATE_DOCTOR_NURSE_DETAILS extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, 90, -1));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 90, 90, 25));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back small.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaUI/back small.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 410, 37, 39));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 37, 39));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("Status");
@@ -347,7 +342,7 @@ public class UPDATE_DOCTOR_NURSE_DETAILS extends javax.swing.JFrame {
         // TODO add your handling code here:
         //Update doctor/Nurse to hospital
         String ID = jTextField1.getText();
-        int d_id = Integer.parseInt(ID); 
+        int d_id = Integer.parseInt(ID);
         String firstname = jTextField2.getText();
         String lastname = jTextField3.getText();
         //type conversion for date
@@ -358,40 +353,35 @@ public class UPDATE_DOCTOR_NURSE_DETAILS extends javax.swing.JFrame {
         int contact_number = Integer.parseInt(phone_number);
         String email = jTextField6.getText();
         String patient_quota = jTextField10.getText();
-    
-        if( firstname.equals("") || lastname.equals("") || address.equals("") || country_code.equals("") || contact_number == 0 || email.equals(""))
-        {
+
+        if (firstname.equals("") || lastname.equals("") || address.equals("") || country_code.equals("") || contact_number == 0 || email.equals("")) {
             JOptionPane.showMessageDialog(null, "Please enter mandatory field data!!");
-        }
-        else
-        {
-            try{
-                if(jRadioButton1.isSelected())
-                {
-                //Call connection
-                Connection con = ConnectionProvider.getCon();
-                Statement stm = con.createStatement();
-  
-                //Enter data into DB doctor_details
-                stm.executeUpdate("update doctor_details set d_firstname='"+firstname+"',d_lastname='"+lastname+"',address='"+address+"',country_code='"+country_code+"',contact_number='"+contact_number+"',d_email='"+email+"' where doctor_id='"+d_id+"'");
-                JOptionPane.showMessageDialog(null, "Updated Successfully!!");
-                setVisible(false);
-                new UPDATE_DOCTOR_NURSE_DETAILS().setVisible(true);
-                }else
-                  {
-                //Call connection
-                Connection con = ConnectionProvider.getCon();
-                Statement stm = con.createStatement();
-  
-                //Enter data into DB doctor_details
-                stm.executeUpdate("update nurse_details set n_firstname='"+firstname+"',n_lastname='"+lastname+"',address='"+address+"',country_code='"+country_code+"',contact_number='"+contact_number+"',n_email='"+email+"' where nurse_id='"+d_id+"'");
-                JOptionPane.showMessageDialog(null, "Updated Successfully!!");
-                setVisible(false);
-                new UPDATE_DOCTOR_NURSE_DETAILS().setVisible(true);
-                }  
+        } else {
+            try {
+                if (jRadioButton1.isSelected()) {
+                    //Call connection
+                    Connection con = ConnectionProvider.getCon();
+                    Statement stm = con.createStatement();
+
+                    //Enter data into DB doctor_details
+                    stm.executeUpdate("update doctor_details set d_firstname='" + firstname + "',d_lastname='" + lastname + "',address='" + address + "',country_code='" + country_code + "',contact_number='" + contact_number + "',d_email='" + email + "' where doctor_id='" + d_id + "'");
+                    JOptionPane.showMessageDialog(null, "Updated Successfully!!");
+                    setVisible(false);
+                    new UPDATE_DOCTOR_NURSE_DETAILS().setVisible(true);
+                } else {
+                    //Call connection
+                    Connection con = ConnectionProvider.getCon();
+                    Statement stm = con.createStatement();
+
+                    //Enter data into DB doctor_details
+                    stm.executeUpdate("update nurse_details set n_firstname='" + firstname + "',n_lastname='" + lastname + "',address='" + address + "',country_code='" + country_code + "',contact_number='" + contact_number + "',n_email='" + email + "' where nurse_id='" + d_id + "'");
+                    JOptionPane.showMessageDialog(null, "Updated Successfully!!");
+                    setVisible(false);
+                    new UPDATE_DOCTOR_NURSE_DETAILS().setVisible(true);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
-            catch(Exception e)
-            {JOptionPane.showMessageDialog(null, e.getMessage());}
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -399,91 +389,81 @@ public class UPDATE_DOCTOR_NURSE_DETAILS extends javax.swing.JFrame {
         // TODO add your handling code here:
         //Search Doctor/Nurse
         String ID = jTextField1.getText();
-        try
-        {
-          //Call connection
-                Connection con = ConnectionProvider.getCon();
-                Statement stm = con.createStatement();
-                if(jRadioButton1.isSelected())
-                {
+        try {
+            //Call connection
+            Connection con = ConnectionProvider.getCon();
+            Statement stm = con.createStatement();
+            if (jRadioButton1.isSelected()) {
                 ResultSet rsd = stm.executeQuery("select d_firstname, d_lastname, country_code, contact_number, d_email, address, patient_quota "
-                        + "from doctor_details where doctor_id = '"+ID+"'");
-                    if(rsd.next())
-                    {//Make fields visible
-                        jTextField2.setVisible(true);
-                        jTextField3.setVisible(true);
-                        jTextField6.setVisible(true);
-                        jTextField10.setVisible(true);
-                        jButton2.setVisible(true);
-                        jLabel3.setVisible(true);
-                        jLabel4.setVisible(true);
-                        jLabel6.setVisible(true);
-                        jLabel3.setVisible(true);
-                        jLabel8.setVisible(true);
-                        jLabel13.setVisible(true);
-                        jLabel15.setVisible(true);
-                        jTextField4.setVisible(true);
-                        jLabel5.setVisible(true);      
-                        jTextField11.setVisible(true);       
-                        jTextField12.setVisible(true);
-                       //Set values to fields
-                       jTextField2.setText(rsd.getString(1));
-                       jTextField3.setText(rsd.getString(2));
-                       jTextField6.setText(rsd.getString(5));        
-                       jTextField10.setText(rsd.getString(7));        
-                             
-                       jTextField4.setText(rsd.getString(6));        
-                       jTextField11.setText(rsd.getString(3));        
-                       jTextField12.setText(rsd.getString(4));        
-                               
-                               
-                    }
-                    else
-                    {
-                        jLabel14.setVisible(true);
-                    }
+                        + "from doctor_details where doctor_id = '" + ID + "'");
+                if (rsd.next()) {//Make fields visible
+                    jTextField2.setVisible(true);
+                    jTextField3.setVisible(true);
+                    jTextField6.setVisible(true);
+                    jTextField10.setVisible(true);
+                    jButton2.setVisible(true);
+                    jLabel3.setVisible(true);
+                    jLabel4.setVisible(true);
+                    jLabel6.setVisible(true);
+                    jLabel3.setVisible(true);
+                    jLabel8.setVisible(true);
+                    jLabel13.setVisible(true);
+                    jLabel15.setVisible(true);
+                    jTextField4.setVisible(true);
+                    jLabel5.setVisible(true);
+                    jTextField11.setVisible(true);
+                    jTextField12.setVisible(true);
+                    //Set values to fields
+                    jTextField2.setText(rsd.getString(1));
+                    jTextField3.setText(rsd.getString(2));
+                    jTextField6.setText(rsd.getString(5));
+                    jTextField10.setText(rsd.getString(7));
+
+                    jTextField4.setText(rsd.getString(6));
+                    jTextField11.setText(rsd.getString(3));
+                    jTextField12.setText(rsd.getString(4));
+
+                } else {
+                    jLabel14.setVisible(true);
                 }
-                else
-                {
+            } else {
                 ResultSet rsn = stm.executeQuery("select n_firstname, n_lastname, country_code, contact_number, n_email, address, patient_quota "
-                        + "from nurse_details where nurse_id = '"+ID+"'");
-                if(rsn.next())
-                    {//Make fields visible
-                        jTextField2.setVisible(true);
-                        jTextField3.setVisible(true);
-                        jTextField6.setVisible(true);
-                        jTextField10.setVisible(true);
-                        jButton2.setVisible(true);
-                        jLabel3.setVisible(true);
-                        jLabel4.setVisible(true);
-                        jLabel6.setVisible(true);
-                        jLabel3.setVisible(true);
-                        jLabel8.setVisible(true);
-                        jLabel13.setVisible(true);
-                        jLabel15.setVisible(true);
-                        jTextField4.setVisible(true);
-                        jLabel5.setVisible(true);      
-                        jTextField11.setVisible(true);       
-                        jTextField12.setVisible(true);
-                       //Set values to fields
-                       jTextField2.setText(rsn.getString(1));
-                       jTextField3.setText(rsn.getString(2));
-                       jTextField6.setText(rsn.getString(5));        
-                       jTextField10.setText(rsn.getString(7));        
-                             
-                       jTextField4.setText(rsn.getString(6));        
-                       jTextField11.setText(rsn.getString(3));        
-                       jTextField12.setText(rsn.getString(4));        
-           
-                    }
-                    else
-                    {
-                        jLabel14.setVisible(true);
-                    }
+                        + "from nurse_details where nurse_id = '" + ID + "'");
+                if (rsn.next()) {//Make fields visible
+                    jTextField2.setVisible(true);
+                    jTextField3.setVisible(true);
+                    jTextField6.setVisible(true);
+                    jTextField10.setVisible(true);
+                    jButton2.setVisible(true);
+                    jLabel3.setVisible(true);
+                    jLabel4.setVisible(true);
+                    jLabel6.setVisible(true);
+                    jLabel3.setVisible(true);
+                    jLabel8.setVisible(true);
+                    jLabel13.setVisible(true);
+                    jLabel15.setVisible(true);
+                    jTextField4.setVisible(true);
+                    jLabel5.setVisible(true);
+                    jTextField11.setVisible(true);
+                    jTextField12.setVisible(true);
+                    //Set values to fields
+                    jTextField2.setText(rsn.getString(1));
+                    jTextField3.setText(rsn.getString(2));
+                    jTextField6.setText(rsn.getString(5));
+                    jTextField10.setText(rsn.getString(7));
+
+                    jTextField4.setText(rsn.getString(6));
+                    jTextField11.setText(rsn.getString(3));
+                    jTextField12.setText(rsn.getString(4));
+
+                } else {
+                    jLabel14.setVisible(true);
                 }
-        }catch(Exception e)
-        {JOptionPane.showMessageDialog(null, e.getMessage());}
-        
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

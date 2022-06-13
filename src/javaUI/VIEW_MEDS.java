@@ -11,12 +11,12 @@ import .*;
  *
  * @author dwive
  */
-public class VIEW_DRUGS extends javax.swing.JFrame {
+public class VIEW_MEDS extends javax.swing.JFrame {
 
     /**
      * Creates new form VIEW_DRUGS
      */
-    public VIEW_DRUGS() {
+    public VIEW_MEDS() {
         initComponents();
     }
 
@@ -69,7 +69,6 @@ public class VIEW_DRUGS extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 990, 300));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back small.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -115,21 +114,23 @@ public class VIEW_DRUGS extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VIEW_DRUGS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VIEW_MEDS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VIEW_DRUGS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VIEW_MEDS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VIEW_DRUGS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VIEW_MEDS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VIEW_DRUGS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VIEW_MEDS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VIEW_DRUGS().setVisible(true);
+                new VIEW_MEDS().setVisible(true);
             }
         });
     }
