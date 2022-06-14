@@ -139,6 +139,17 @@ public class VIEW_MEDS extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel tm = (DefaultTableModel) jTable2.getModel();
+        int SelectedRowIndex = jTable2.getSelectedRow();
+        if (SelectedRowIndex != -1) {
+            int drug_id = Integer.parseInt(tm.getValueAt(SelectedRowIndex, 0).toString());
+            {
+                setVisible(false);
+                new Update_Medicine_data(drug_id).setVisible(true);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select an item");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -146,7 +157,7 @@ public class VIEW_MEDS extends javax.swing.JFrame {
         DefaultTableModel tm = (DefaultTableModel) jTable2.getModel();
         int SelectedRowIndex = jTable2.getSelectedRow();
         if (SelectedRowIndex != -1) {
-            int drug_id = (int) tm.getValueAt(SelectedRowIndex, 0);
+            int drug_id = Integer.parseInt(tm.getValueAt(SelectedRowIndex, 0).toString());
             int a = JOptionPane.showConfirmDialog(null, "Do you really want to delete item?", "Select", JOptionPane.YES_NO_OPTION);
             if (a == 0) {
                 MedicineDetails.deleteMedicine(drug_id);
@@ -155,6 +166,7 @@ public class VIEW_MEDS extends javax.swing.JFrame {
                 new VIEW_MEDS().setVisible(true);
             }
         } else {
+            JOptionPane.showMessageDialog(null, "Please select an item");
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
