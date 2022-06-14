@@ -113,8 +113,8 @@ public class StaffDetails {
         }
     }
 
-    public static void softDeleteStaff(int staff_id) {
-        String sql = "update staff_details set s_status = 'inactive' where staff_id='" + staff_id + "'";
+    public static void updateStatus(int staff_id, String s_status) {
+        String sql = "update staff_details set s_status = '" + s_status + "' where staff_id='" + staff_id + "'";
 
         try {
             Connection con = ConnectionProvider.getCon();
@@ -122,7 +122,7 @@ public class StaffDetails {
             int isExecuted = stm.executeUpdate(sql);
 
             if (isExecuted == 1) {
-                JOptionPane.showMessageDialog(null, "Staff with staff id: " + staff_id + "has been marked as 'inactive'");
+                JOptionPane.showMessageDialog(null, "Staff with staff id: " + staff_id + "has been marked as " + s_status);
             }
         } catch (HeadlessException | SQLException e) {
             System.out.println(e.getMessage());

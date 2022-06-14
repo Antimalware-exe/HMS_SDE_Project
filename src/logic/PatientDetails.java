@@ -247,4 +247,38 @@ public class PatientDetails {
         }
         return rs;
     }
+
+    public static void addPatientHistory(int patient_id) {
+        String sql0 = "{call ADD_PATIENT_HISTORY(?)}";
+
+        try {
+            Connection con = ConnectionProvider.getCon();
+            CallableStatement cstmt = con.prepareCall(sql0);
+            cstmt.setInt(1, patient_id);
+            cstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void setPatientToDefault(int patient_id) {
+        String sql1 = "{call Unassign_bed(?)}";
+
+        String sql2 = "{call SetPatientDetails_Default(?)}";
+
+        try {
+            Connection con = ConnectionProvider.getCon();
+            
+            CallableStatement cstmt1 = con.prepareCall(sql1);
+            cstmt1.setInt(1, patient_id);
+            cstmt1.executeUpdate();
+            
+            CallableStatement cstmt = con.prepareCall(sql2);
+            cstmt.setInt(1, patient_id);
+            cstmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

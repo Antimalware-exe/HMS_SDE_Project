@@ -93,7 +93,7 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
                 if (rspd.getString("end_date") != null) {
                     end_date = rspd.getString("end_date");
                 }
-                if (rspd.getString("end_date") != null) {
+                if (rspd.getString("bed_id") != null) {
                     bed_id = rspd.getInt("bed_id");
                 }
             }
@@ -1574,7 +1574,8 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
         String bed_number = (String) jComboBox9.getSelectedItem();
         String end_date_text = jTextField30.getText();
 
-        if (!"".equals(end_date_text) && !"YYYY-MM-DD".equals(end_date_text)) {
+        boolean correct = !"".equals(end_date_text) && !"YYYY-MM-DD".equals(end_date_text) && null != end_date_text;
+        if (correct) {
             end_date = end_date_text;
         }
         //        int triage_id = BedDetails.getTriageId(triage);
@@ -1585,12 +1586,18 @@ public class UPDATE_PATIENT_DATA extends javax.swing.JFrame {
                 BedDetails.deallocateBedFrom(p_id);
                 BedDetails.allocateBedTo(p_id, bed_number);
                 PatientDetails.setStayDuration(p_id, start_date, end_date);
+                if (correct) {
+                    PatientDetails.addPatientHistory(p_id);
+                    PatientDetails.setPatientToDefault(p_id);
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Please select the ward type");
             }
         } else {
             BedDetails.setTriageId(p_id, BedDetails.getTriageId(triage));
             PatientDetails.setStayDuration(p_id);
+            PatientDetails.addPatientHistory(p_id);
+            PatientDetails.setPatientToDefault(p_id);
         }
 //        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 //        System.out.println(timestamp.toString().split("\\.")[0]);

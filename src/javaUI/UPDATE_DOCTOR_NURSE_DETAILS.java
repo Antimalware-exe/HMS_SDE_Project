@@ -390,6 +390,7 @@ public class UPDATE_DOCTOR_NURSE_DETAILS extends javax.swing.JFrame {
             int staff_id = Integer.parseInt(ID);
 
             StaffDetails.updateStaff(staff_id, s_fname, s_lname, s_gender, s_country_code, s_contact_number, s_email_address, s_house_number, s_street_name, s_city, s_zip, s_state, s_country, s_specialization, s_qualification);
+            StaffDetails.updateStatus(staff_id, s_status);
         }
 
     }//GEN-LAST:event_jButton2ActionPerformed
