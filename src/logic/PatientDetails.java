@@ -7,9 +7,6 @@ package logic;
 import java.awt.HeadlessException;
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -208,6 +205,7 @@ public class PatientDetails {
         String sql0 = "{call ADD_PATIENT_HISTORY(?)}";
         String sql1 = "DELETE FROM guardian_details WHERE patient_id = '" + patient_id + "'";
         String sql2 = "update prescriptions set patient_id=NULL";
+        String sql4 = "{call Unassign_bed(?)}";
         String sql3 = "DELETE FROM patient_details WHERE patient_id = '" + patient_id + "'";
 
         try {
@@ -215,6 +213,10 @@ public class PatientDetails {
             CallableStatement cstmt = con.prepareCall(sql0);
             cstmt.setInt(1, patient_id);
             cstmt.executeUpdate();
+
+            CallableStatement cstmt1 = con.prepareCall(sql4);
+            cstmt1.setInt(1, patient_id);
+            cstmt1.executeUpdate();
 
             Statement stm = con.createStatement();
             int is1Executed = stm.executeUpdate(sql1);
@@ -231,5 +233,18 @@ public class PatientDetails {
         } catch (HeadlessException | SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public static ResultSet getPatientHistory(int patient_id) {
+        ResultSet rs = null;
+        String sql = "SELECT * FROM patient_history where patient_id = " + patient_id;
+        try {
+            Connection con = ConnectionProvider.getCon();
+            Statement stm = con.createStatement();
+            rs = stm.executeQuery(sql);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return rs;
     }
 }

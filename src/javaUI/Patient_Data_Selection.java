@@ -222,10 +222,13 @@ public class Patient_Data_Selection extends javax.swing.JFrame {
         int SelectedRowIndex = jTable3.getSelectedRow();
         int p_id = (int) tm.getValueAt(SelectedRowIndex, 0);
         if (SelectedRowIndex != -1) {
-            PatientDetails.delPatientProcedure(p_id);
+            int a = JOptionPane.showConfirmDialog(null, "Do you really want to delete item?", "Select", JOptionPane.YES_NO_OPTION);
+            if (a == 0) {
+                PatientDetails.delPatientProcedure(p_id);
 
-            setVisible(false);
-            new Patient_Data_Selection().setVisible(true);
+                setVisible(false);
+                new Patient_Data_Selection().setVisible(true);
+            }
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 

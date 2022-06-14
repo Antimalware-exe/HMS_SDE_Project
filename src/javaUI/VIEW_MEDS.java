@@ -3,6 +3,7 @@ package javaUI;
 import javax.swing.table.DefaultTableModel;
 import logic.MedicineDetails;
 import java.sql.*;
+import javax.swing.JOptionPane;
 import logic.PatientDetails;
 
 /*
@@ -146,11 +147,13 @@ public class VIEW_MEDS extends javax.swing.JFrame {
         int SelectedRowIndex = jTable2.getSelectedRow();
         if (SelectedRowIndex != -1) {
             int drug_id = (int) tm.getValueAt(SelectedRowIndex, 0);
+            int a = JOptionPane.showConfirmDialog(null, "Do you really want to delete item?", "Select", JOptionPane.YES_NO_OPTION);
+            if (a == 0) {
+                MedicineDetails.deleteMedicine(drug_id);
 
-            MedicineDetails.deleteMedicine(drug_id);
-
-            setVisible(false);
-            new VIEW_MEDS().setVisible(true);
+                setVisible(false);
+                new VIEW_MEDS().setVisible(true);
+            }
         } else {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
